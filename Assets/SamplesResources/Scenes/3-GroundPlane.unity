@@ -981,6 +981,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioText: {fileID: 879360503}
+  buttonMic: {fileID: 0}
   commandClip: {fileID: 0}
   moveTime: 0
   yOffset: 0
@@ -1106,6 +1107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 650209c06c6b8f848a6ca95cb3f39d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btn_mic: {fileID: 1621954381}
   audioText: {fileID: 879360503}
   commandClip: {fileID: 0}
   moveTime: 0

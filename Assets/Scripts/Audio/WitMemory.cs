@@ -16,6 +16,8 @@ public class WitMemory : MonoBehaviour
 {
     // Class Variables
     Task writing_request = null;
+    public Button btn_mic;
+    public MyButton myButton;
     // Audio variables
     public Text audioText;
     public AudioClip commandClip;
@@ -25,6 +27,7 @@ public class WitMemory : MonoBehaviour
     // API access parameters
     string url;
     string token;
+    bool btn_aux = false;
     UnityWebRequest wr;
 
     // Movement variables
@@ -42,7 +45,7 @@ public class WitMemory : MonoBehaviour
         // See: https://github.com/afauch/wit3d/issues/2
         // Uncomment the line below to bypass SSL
         // System.Net.ServicePointManager.ServerCertificateValidationCallback = (a, b, c, d) => { return true; };
-
+        myButton = btn_mic.GetComponent<MyButton>();
         // set samplerate to 16000 for wit.ai
         samplerate = 16000;
         handle = gameObject.GetComponent<Handle>();
@@ -52,18 +55,13 @@ public class WitMemory : MonoBehaviour
 
     void Update()
     {
-        if(writing_request != null)
-        {
-
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!btn_aux && myButton.buttonPressed)
         {
             print("Listening for command");
             commandClip = Microphone.Start(null, false, 10, samplerate);  //Start recording (rewriting older recordings)
+            btn_aux = true;
         }
-
-
-        if (Input.GetKeyUp(KeyCode.Space))
+        else if (btn_aux && !myButton.buttonPressed)
         {
             var watch = new System.Diagnostics.Stopwatch();
             var watch1 = new System.Diagnostics.Stopwatch();
@@ -89,6 +87,7 @@ public class WitMemory : MonoBehaviour
             watch1.Stop();
             print($"Execution Time 1: {watch.ElapsedMilliseconds} ms");
             print($"Execution Time 2: {watch1.ElapsedMilliseconds} ms");
+            btn_aux = false;
         }
 
 

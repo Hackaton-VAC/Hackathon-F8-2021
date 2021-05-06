@@ -38,6 +38,7 @@ public partial class Wit : MonoBehaviour {
 
     // Audio variables
     public Text audioText;
+    public Button buttonMic;
     public AudioClip commandClip;
     int samplerate;
 
