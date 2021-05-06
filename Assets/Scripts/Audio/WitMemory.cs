@@ -10,15 +10,17 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class WitMemory : MonoBehaviour
 {
     // Class Variables
-
+    Task writing_request = null;
     // Audio variables
     public Text audioText;
     public AudioClip commandClip;
     int samplerate;
+    HttpWebRequest request;
 
     // API access parameters
     string url;
@@ -31,7 +33,7 @@ public class WitMemory : MonoBehaviour
 
     // GameObject to use as a default spawn point
     public GameObject spawnPoint;
-
+    public Handle handle;
     // Use this for initialization
     void Start()
     {
@@ -43,13 +45,17 @@ public class WitMemory : MonoBehaviour
 
         // set samplerate to 16000 for wit.ai
         samplerate = 16000;
-
+        handle = gameObject.GetComponent<Handle>();
     }
 
     // Update is called once per frame
+
     void Update()
     {
+        if(writing_request != null)
+        {
 
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             print("Listening for command");
@@ -59,7 +65,9 @@ public class WitMemory : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Space))
         {
-
+            var watch = new System.Diagnostics.Stopwatch();
+            var watch1 = new System.Diagnostics.Stopwatch();
+            watch.Start();
             // Debug
             print("Thinking ...");
             // Save the audio file
@@ -72,46 +80,66 @@ public class WitMemory : MonoBehaviour
 
             //Grab the most up-to-date JSON file
             token = "ISUHEKFR3XLJ5S7BOZVJSBPUNN3VMKZF";
+            watch.Stop();
 
             //Start a coroutine called "WaitForRequest" with that WWW variable passed in as an argument
             //audioFile
-            audioText.text = GetJSONText(audioFile);
-            print(audioText.text);
+            watch1.Start();
+            GetJSONText(audioFile);
+            watch1.Stop();
+            print($"Execution Time 1: {watch.ElapsedMilliseconds} ms");
+            print($"Execution Time 2: {watch1.ElapsedMilliseconds} ms");
         }
 
 
     }
 
-    string GetJSONText(byte[] BA_AudioFile)
+    void FinishWebRequest(IAsyncResult result)
     {
-        // create an HttpWebRequest
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://api.wit.ai/speech?v=20200513");
+        var response = request.EndGetResponse(result);
+        StreamReader response_stream = new StreamReader(response.GetResponseStream());
+        string text = response_stream.ReadToEnd();
+        handle.HandleMe(text);
+        print(text);
+    }
 
-        request.Method = "POST";
-        request.Headers["Authorization"] = "Bearer " + token;
-        request.ContentType = "audio/wav";
-        request.ContentLength = BA_AudioFile.Length;
-        request.GetRequestStream().Write(BA_AudioFile, 0, BA_AudioFile.Length);
-
-        // Process the wit.ai response
-        try
+    IEnumerator Upload(byte[] BA_AudioFile)
+    {
+        WWWForm form = new WWWForm();
+        form.AddBinaryData("", BA_AudioFile, "");
+        using (UnityWebRequest www = UnityWebRequest.Post("https://api.wit.ai/speech?v=20200513", form))
         {
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            if (response.StatusCode == HttpStatusCode.OK)
+            www.SetRequestHeader("Authorization", "Bearer " + token);
+            www.SetRequestHeader("Content-Type", "audio/wav");
+            www.SetRequestHeader("Content-Length", BA_AudioFile.Length.ToString());
+            yield return www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
             {
-                print("Http went through ok");
-                StreamReader response_stream = new StreamReader(response.GetResponseStream());
-                return response_stream.ReadToEnd();
+                print(www.error);
             }
             else
             {
-                return "Error: " + response.StatusCode.ToString();
+                print(www.downloadHandler.text);
             }
         }
-        catch (Exception ex)
-        {
-            return "Error: " + ex.Message;
-        }
+    }
+
+    public void GetJSONText(byte[] BA_AudioFile)
+    {
+        // create an HttpWebRequest
+        request = (HttpWebRequest)WebRequest.Create("https://api.wit.ai/speech?v=20200513");
+        request.Method = "POST";
+        request.Proxy = null;
+        request.Headers["Authorization"] = "Bearer " + token;
+        request.ContentType = "audio/wav";
+        request.ContentLength = BA_AudioFile.Length;
+        request.GetRequestStreamAsync().ContinueWith(stream => {
+            stream.Result.WriteAsync(BA_AudioFile, 0, BA_AudioFile.Length).ContinueWith(antecedent => {
+                print("Completed First part");
+                request.BeginGetResponse(new AsyncCallback(FinishWebRequest), null);
+            }, TaskContinuationOptions.OnlyOnRanToCompletion);
+        }, TaskContinuationOptions.OnlyOnRanToCompletion);
     }
 
 }

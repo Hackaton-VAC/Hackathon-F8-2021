@@ -52,7 +52,7 @@ public partial class Wit : MonoBehaviour {
 
     // GameObject to use as a default spawn point
     public GameObject spawnPoint;
-
+    public Handle handle;
     // Use this for initialization
     void Start () {
 
@@ -63,7 +63,7 @@ public partial class Wit : MonoBehaviour {
 
         // set samplerate to 16000 for wit.ai
         samplerate = 16000;
-
+        handle = gameObject.GetComponent<Handle>();
     }
 
     // Update is called once per frame
@@ -92,8 +92,9 @@ public partial class Wit : MonoBehaviour {
 
             //Start a coroutine called "WaitForRequest" with that WWW variable passed in as an argument
             //audioFile
-            audioText.text = GetJSONText("Assets/sample.wav");
-            print(audioText.text);
+            //audioText.text = GetJSONText("Assets/sample.wav");
+            handle.HandleMe(GetJSONText("Assets/sample.wav"));
+            //print(GetJSONText("Assets/sample.wav"));
         }
 
 
