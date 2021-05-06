@@ -1108,6 +1108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   btn_mic: {fileID: 1621954381}
+  myButton: {fileID: 0}
   audioText: {fileID: 879360503}
   commandClip: {fileID: 0}
   moveTime: 0
@@ -3070,6 +3071,7 @@ GameObject:
   - component: {fileID: 1621954383}
   - component: {fileID: 1621954382}
   - component: {fileID: 1621954381}
+  - component: {fileID: 1621954384}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -3179,6 +3181,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621954379}
   m_CullTransparentMesh: 1
+--- !u!114 &1621954384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621954379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99a2928a6f193543ae8926bec9d1cad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonPressed: 0
 --- !u!1 &1690053357
 GameObject:
   m_ObjectHideFlags: 0
