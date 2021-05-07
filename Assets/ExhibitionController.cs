@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using HackathonUtils;
 public class ExhibitionController : MonoBehaviour
 {
 
@@ -17,7 +16,7 @@ public class ExhibitionController : MonoBehaviour
         foreach(GameObject actor in backStage)
         {
             Renderer actorRenderer = actor.GetComponent<Renderer>();
-            Vector2 position2D = Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
+            Vector2 position2D = HackathonUtils.Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
             Vector3 resultingTransform = new Vector3(position2D.x, transform.position.y, position2D.y);
             actor.transform.position = resultingTransform;
             Vector3 fromPlatFormToActor = transform.position - resultingTransform;
