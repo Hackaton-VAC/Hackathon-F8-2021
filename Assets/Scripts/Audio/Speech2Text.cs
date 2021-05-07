@@ -48,6 +48,7 @@ namespace MyProject.Speech
 
 		public static IEnumerator Speech(string text)
 		{
+			Debug.Log("Me llaman para hablar");
 			byte[] synthesizeResponse = null;
 			AudioClip clip = null;
 			tts.Synthesize(

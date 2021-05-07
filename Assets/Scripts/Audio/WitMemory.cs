@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using MyProject.Speech;
 
 public class WitMemory : MonoBehaviour
 {
@@ -49,12 +50,15 @@ public class WitMemory : MonoBehaviour
         // set samplerate to 16000 for wit.ai
         samplerate = 16000;
         handle = gameObject.GetComponent<Handle>();
+        audioListener.Start();
+        
     }
 
     // Update is called once per frame
 
     void Update()
     {
+        
         if (!btn_aux && myButton.buttonPressed)
         {
             print("Listening for command");
@@ -86,6 +90,11 @@ public class WitMemory : MonoBehaviour
             GetJSONText(audioFile);
             watch1.Stop();
             btn_aux = false;
+        }
+        if (Handle.has_new_audio)
+        {
+            StartCoroutine(audioListener.Speech(Handle.outputText));
+            Handle.has_new_audio = false;
         }
     }
 

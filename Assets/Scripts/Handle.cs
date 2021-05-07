@@ -12,15 +12,24 @@ using MyProject.Speech;
 
 
 public partial class Handle : MonoBehaviour {
+	public static bool has_new_audio = false;
+	public static string outputText = "";
 
+    public void Start()
+    {
+        
+    }
 
-	public void HandleMe(string textToParse) {
+    public void Update()
+    {
+        
+    }
+
+    public void HandleMe(string textToParse) {
 		audioListener.Start();
 		print (textToParse);
 		var response = JSON.Parse(textToParse);
 		print ("SimpleJSON: " + response.ToString());
-		string outputText = "";
-
 		string intent = response["intents"][0]["name"].Value.ToLower();
 
 		// possible values for orientation entity: left, right, down, up
@@ -62,13 +71,15 @@ public partial class Handle : MonoBehaviour {
 					default:
 							outputText = "Sorry, I didn't understand the brain part that you want information about.";
 							break;
-					StartCoroutine(audioListener.Speech(outputText));
 				}
-				
-			} 
+					print("Auxilio 1");
+				//StartCoroutine(audioListener.Speech(outputText));
+			}
 			else {
-					outputText = "Sorry, I didn't understand the brain part that you want information about.";
-				StartCoroutine(audioListener.Speech(outputText));
+				outputText = "Sorry, I didn't understand the brain part that you want information about.";
+					print("Auxilio 2");
+
+					//StartCoroutine(audioListener.Speech(outputText));
 			}
 			break;
 		case "group_object":
@@ -79,7 +90,9 @@ public partial class Handle : MonoBehaviour {
 			}
 			else {
 					outputText = "Sorry, I didn't understand the brain part that you want to group.";
-				StartCoroutine(audioListener.Speech(outputText));
+					print("Auxilio 3");
+
+					//StartCoroutine(audioListener.Speech(outputText));
 			}
 			break;
 		case "divide_object":
@@ -100,7 +113,9 @@ public partial class Handle : MonoBehaviour {
 			}
 			else {
 					outputText = "Sorry, I didn't understand the brain part that you want to select.";
-				StartCoroutine(audioListener.Speech(outputText));
+					print("Auxilio 4");
+
+					//StartCoroutine(audioListener.Speech(outputText));
 			}
 			break;
 		case "turn_object":
@@ -118,10 +133,12 @@ public partial class Handle : MonoBehaviour {
 			break;
 		default:
 			outputText = "Sorry, didn't understand your intent.";
-			StartCoroutine(audioListener.Speech(outputText));
+				print("Auxilio 5");
+
+				//StartCoroutine(audioListener.Speech(outputText));
 			break;
 		}
-
-
+		print("SALGO DE AQUI");
+		has_new_audio = true;
 	}
 }
