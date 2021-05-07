@@ -117,7 +117,7 @@ public partial class Handle : MonoBehaviour {
 			//FocusCommand();
 			break;
 		default:
-				outputText = "Sorry, didn't understand your intent.";
+			outputText = "Sorry, didn't understand your intent.";
 			StartCoroutine(audioListener.Speech(outputText));
 			break;
 		}

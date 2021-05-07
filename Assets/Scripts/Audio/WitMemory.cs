@@ -85,43 +85,20 @@ public class WitMemory : MonoBehaviour
             watch1.Start();
             GetJSONText(audioFile);
             watch1.Stop();
-            print($"Execution Time 1: {watch.ElapsedMilliseconds} ms");
-            print($"Execution Time 2: {watch1.ElapsedMilliseconds} ms");
             btn_aux = false;
         }
-
-
     }
 
     void FinishWebRequest(IAsyncResult result)
     {
+        print("ENTRO EN FINISH WEB REQ");
         var response = request.EndGetResponse(result);
         StreamReader response_stream = new StreamReader(response.GetResponseStream());
         string text = response_stream.ReadToEnd();
+        print("BEFORE HANDLE ME");
         handle.HandleMe(text);
+        print("Handle Text");
         print(text);
-    }
-
-    IEnumerator Upload(byte[] BA_AudioFile)
-    {
-        WWWForm form = new WWWForm();
-        form.AddBinaryData("", BA_AudioFile, "");
-        using (UnityWebRequest www = UnityWebRequest.Post("https://api.wit.ai/speech?v=20200513", form))
-        {
-            www.SetRequestHeader("Authorization", "Bearer " + token);
-            www.SetRequestHeader("Content-Type", "audio/wav");
-            www.SetRequestHeader("Content-Length", BA_AudioFile.Length.ToString());
-            yield return www.SendWebRequest();
-
-            if (www.result != UnityWebRequest.Result.Success)
-            {
-                print(www.error);
-            }
-            else
-            {
-                print(www.downloadHandler.text);
-            }
-        }
     }
 
     public void GetJSONText(byte[] BA_AudioFile)
@@ -135,7 +112,6 @@ public class WitMemory : MonoBehaviour
         request.ContentLength = BA_AudioFile.Length;
         request.GetRequestStreamAsync().ContinueWith(stream => {
             stream.Result.WriteAsync(BA_AudioFile, 0, BA_AudioFile.Length).ContinueWith(antecedent => {
-                print("Completed First part");
                 request.BeginGetResponse(new AsyncCallback(FinishWebRequest), null);
             }, TaskContinuationOptions.OnlyOnRanToCompletion);
         }, TaskContinuationOptions.OnlyOnRanToCompletion);
