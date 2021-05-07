@@ -41,8 +41,8 @@ public partial class Handle : MonoBehaviour {
 		{
 		case "about_object":
 			// When the user wants to know info about a specific brain part
-			if (response["entities"]["brain_part"] != null) {
-				switch (response["entities"]["brain_part"]["value"])
+			if (response["entities"]["brain_part:brain_part"] != null) {
+				switch (response["entities"]["brain_part:brain_part"][0]["value"])
 				{
 					case "brainstem":
 						outputText = @"The brainstem is the major route that connects the forebrain, spinal cord, 
@@ -69,6 +69,7 @@ public partial class Handle : MonoBehaviour {
 										It controls balance, coordinates movement, and maintains muscle tone.";
 							break;
 					default:
+							print("Auxilio pa dentro");
 							outputText = "Sorry, I didn't understand the brain part that you want information about.";
 							break;
 				}
@@ -84,8 +85,8 @@ public partial class Handle : MonoBehaviour {
 			break;
 		case "group_object":
 			// When the user wants to group an independent part with the group 
-			if (response["entities"]["brain_part"] != null) {
-				string brainPart = response["entities"]["brain_part"]["value"];
+			if (response["entities"]["brain_part:brain_part"] != null) {
+				string brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
 				//GroupCommand(brainPart);
 			}
 			else {
@@ -97,8 +98,8 @@ public partial class Handle : MonoBehaviour {
 			break;
 		case "divide_object":
 			// When the user wants to separate a part of the group
-			if (response["entities"]["brain_part"] != null) {
-				string brainPart = response["entities"]["brain_part"]["value"];
+			if (response["entities"]["brain_part:brain_part"] != null) {
+				string brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
 				//DivideCommand(brainPart);
 			}
 			else {
@@ -107,8 +108,8 @@ public partial class Handle : MonoBehaviour {
 			}
 			break;
 		case "select_object":
-			if (response["entities"]["brain_part"] != null) {
-				string brainPart = response["entities"]["brain_part"]["value"];
+			if (response["entities"]["brain_part:brain_part"] != null) {
+				string brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
 				//SelectCommand(brainPart);
 			}
 			else {
@@ -122,8 +123,8 @@ public partial class Handle : MonoBehaviour {
 			// defining the default value
 			string orientation = "right";
 
-			if (response["entities"]["orientation"] != null) {
-				orientation = response["entities"]["orientation"]["value"];
+			if (response["entities"]["orientation:orientation"] != null) {
+				orientation = response["entities"]["orientation:orientation"][0]["value"];
 				
 			}
 			//TurnCommand(orientation);
