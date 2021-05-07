@@ -11,14 +11,10 @@ using IBM.Cloud.SDK;
 using MyProject.Speech;
 
 
-public partial class Handle : MonoBehaviour {
+public class Handle : MonoBehaviour {
 	public static bool has_new_audio = false;
 	public static string outputText = "";
 
-    public void Start()
-    {
-        
-    }
 
     public void Update()
     {
@@ -30,14 +26,17 @@ public partial class Handle : MonoBehaviour {
 		print (textToParse);
 		var response = JSON.Parse(textToParse);
 		print ("SimpleJSON: " + response.ToString());
-		string intent = response["intents"][0]["name"].Value.ToLower();
 
-		// possible values for orientation entity: left, right, down, up
-		// possible values for brain_part entity: brainstem, temporal, occipital,
-		// parietal, frontal, cerebellum
+        string intent = response["intents"][0]["name"].Value.ToLower();
 
-		// what function should I call?
-		switch (intent)
+        // possible values for orientation entity: left, right, down, up
+        // possible values for brain_part entity: brainstem, temporal, occipital,
+        // parietal, frontal, cerebellum
+
+        // what function should I call?
+       
+
+        switch (intent)
 		{
 		case "about_object":
 			// When the user wants to know info about a specific brain part
@@ -134,12 +133,12 @@ public partial class Handle : MonoBehaviour {
 			break;
 		default:
 			outputText = "Sorry, didn't understand your intent.";
-				print("Auxilio 5");
-
-				//StartCoroutine(audioListener.Speech(outputText));
+            print("Auxilio 5");
+			StartCoroutine(audioListener.Speech(outputText));
 			break;
 		}
-		print("SALGO DE AQUI");
-		has_new_audio = true;
+
+        Debug.Log("SALGO DE AQUI");
+        has_new_audio = true;
 	}
 }

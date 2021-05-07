@@ -6,11 +6,11 @@ using UnityEngine.UI;
 
 public class SwitchToScene : MonoBehaviour
 {
-	public Button yourButton;
+	//public Button yourButton;
 
 	void Start()
 	{
-		Button btn = yourButton.GetComponent<Button>();
+		//Button btn = yourButton.GetComponent<Button>();
 		//btn.onClick.AddListener(TaskOnClick);
 	}
 

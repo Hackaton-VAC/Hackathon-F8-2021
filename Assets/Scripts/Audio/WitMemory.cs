@@ -38,6 +38,8 @@ public class WitMemory : MonoBehaviour
     // GameObject to use as a default spawn point
     public GameObject spawnPoint;
     public Handle handle;
+
+    private bool resetButton = false;
     // Use this for initialization
     void Start()
     {
@@ -93,8 +95,17 @@ public class WitMemory : MonoBehaviour
         }
         if (Handle.has_new_audio)
         {
+
+
             StartCoroutine(audioListener.Speech(Handle.outputText));
             Handle.has_new_audio = false;
+
+        }
+
+        if (resetButton)
+        {
+            myButton.DefaultState();
+            resetButton = false;
         }
     }
 
@@ -108,6 +119,7 @@ public class WitMemory : MonoBehaviour
         handle.HandleMe(text);
         print("Handle Text");
         print(text);
+        resetButton = true;
     }
 
     public void GetJSONText(byte[] BA_AudioFile)
