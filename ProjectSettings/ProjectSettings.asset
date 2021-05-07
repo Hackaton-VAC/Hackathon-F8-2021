@@ -63,7 +63,7 @@ PlayerSettings:
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
   use32BitDisplayBuffer: 1
-  preserveFramebufferAlpha: 0
+  preserveFramebufferAlpha: 1
   disableDepthAndStencilBuffers: 0
   androidStartInFullscreen: 1
   androidRenderOutsideSafeArea: 1
@@ -149,7 +149,7 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.DefaultCompany.Hackathon_FB_2021
     Standalone: com.DefaultCompany.HackathonFB2021
-    iPhone: com.vuforia.engine.CoreSamplesUnity
+    iPhone: com.DefaultCompany.HackathonFB2021
   buildNumber:
     Standalone: 0
     iPhone: 0
@@ -555,7 +555,8 @@ PlayerSettings:
   enableCrashReportAPI: 0
   cameraUsageDescription: Camera access required for target detection and tracking
   locationUsageDescription: 
-  microphoneUsageDescription: 
+  microphoneUsageDescription: Microphone access required for target detection and
+    tracking
   switchNMETAOverride: 
   switchNetLibKey: 
   switchSocketMemoryPoolSize: 6144
