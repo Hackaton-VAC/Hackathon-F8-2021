@@ -11,11 +11,16 @@ public class SwitchToScene : MonoBehaviour
 	void Start()
 	{
 		Button btn = yourButton.GetComponent<Button>();
-		btn.onClick.AddListener(TaskOnClick);
+		//btn.onClick.AddListener(TaskOnClick);
 	}
 
-	void TaskOnClick()
+	public void StartGame()
 	{
-		SceneManager.LoadScene("3-GroundPlane");
+		SceneManager.LoadScene("GameScene");
+	}
+
+	public void BackToMenu()
+	{
+		SceneManager.LoadScene("MainMenu");
 	}
 }
