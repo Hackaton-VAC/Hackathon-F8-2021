@@ -13,12 +13,17 @@ public class MyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     public GameObject icon;
     public GameObject pulse;
     public GameObject bg;
+    public Color activeColor;
+    public Color blockedColor;
+
     Image image;
+
     public bool buttonPressed;
 
     void Start()
     {
         image = bg.gameObject.GetComponent<Image>();
+        image.color = activeColor;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -29,10 +34,21 @@ public class MyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
+       
         buttonPressed = false;
         spinner.SetActive(true);
         icon.SetActive(false);
-        image.color = Color.black;
+        image.color = blockedColor;
         // Color Background
+    }
+
+    public void DefaultState()
+    {
+        Debug.Log("Entro!");
+        buttonPressed = false;
+        spinner.SetActive(false);
+        icon.SetActive(true);
+        pulse.SetActive(true);
+        image.color = activeColor;
     }
 }

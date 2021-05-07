@@ -14,10 +14,7 @@ public class WavMemory : MonoBehaviour
         ConvertAndWrite(fileStream, clip);
         WriteHeader(fileStream, clip);
         fileStream.Position = 0;
-        Debug.Log(fileStream.CanRead);
-        Debug.Log(fileStream.Position);
         BinaryReader filereader = new BinaryReader(fileStream);
-        Debug.Log(fileStream.Position);
         byte[] BA_AudioFile = filereader.ReadBytes((Int32)fileStream.Length);
         fileStream.Close();
         filereader.Close();
