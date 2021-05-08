@@ -1973,10 +1973,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToPlace: 1
-  switchVelocity: 2
+  switchVelocity: 1
   backStageThreshold: 0.1
-  floatRadius: 2
-  floatHeight: 0.5
+  floatRadius: 2.5
+  floatHeight: 0.25
 --- !u!114 &495666004
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,20 +42,21 @@ public class Stagehand : MonoBehaviour
             GameObject actor = child.gameObject;
             Renderer actorRenderer = actor.GetComponent<Renderer>();
             Vector2 position2D = HackathonUtils.Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
-            Vector3 resultingTransform = new Vector3(position2D.x, transform.position.y, position2D.y);
+            Vector3 resultingTransform = new Vector3(position2D.x, fixedHeight.y, position2D.y);
             actor.transform.position = resultingTransform;
+            //
             Vector3 fromPlatFormToActor = transform.position - resultingTransform;
             Vector3 fromPlatFormToActorsRenderer = transform.position - actorRenderer.bounds.center;
             Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
-            Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, actor.transform.position.y, dispalcementAdjustment.z);
-            actor.transform.position = finalTransform + fixedHeight;
+            Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, 0, dispalcementAdjustment.z);
+            actor.transform.position = finalTransform;
             currentAngle += angleStep;
 
             //Vector3 platformCenterDirection = (finalTransform - transform.position).normalized;
 
         }
     }
-
+    // Centro geometrico al transform
     void SendToBack()
     {
         int angleStep = transform.childCount - 1 <= 0 ? 0 :  180 / (transform.childCount - 1);
@@ -67,16 +68,17 @@ public class Stagehand : MonoBehaviour
             GameObject actor = child.gameObject;
             Renderer actorRenderer = actor.GetComponent<Renderer>();
             Vector2 position2D = HackathonUtils.Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
-            Vector3 resultingTransform = new Vector3(position2D.x, transform.position.y, position2D.y);
-            float distanceToTarget = Vector3.Distance(actorRenderer.bounds.center, resultingTransform);
+            Vector3 resultingTransform = new Vector3(position2D.x, fixedHeight.y, position2D.y);
+            var aux = new Vector3(actorRenderer.bounds.center.x, fixedHeight.y, actorRenderer.bounds.center.z);
+            float distanceToTarget = Vector3.Distance(aux, resultingTransform);
+
             if (distanceToTarget > backStageThreshold)
             {
                 //actor.transform.position = resultingTransform;
                 Vector3 fromPlatFormToActor = transform.position - resultingTransform;
-                Vector3 fromPlatFormToActorsRenderer = transform.position - actorRenderer.bounds.center;
-                Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
-                //Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, actor.transform.position.y, dispalcementAdjustment.z);
-                //actor.transform.position = finalTransform;//new Vector3(0, floatHeight, 0);
+                //Vector3 fromPlatFormToActorsRenderer = transform.position - actorRenderer.bounds.center;
+                //Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
+                //Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, 0, dispalcementAdjustment.z);
                 actor.transform.position = Vector3.MoveTowards(actor.transform.position, resultingTransform, switchVelocity * dt);
             }
             else
@@ -86,9 +88,10 @@ public class Stagehand : MonoBehaviour
                 Vector3 fromPlatFormToActor = transform.position - resultingTransform;
                 Vector3 fromPlatFormToActorsRenderer = transform.position - actorRenderer.bounds.center;
                 Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
-                Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, actor.transform.position.y, dispalcementAdjustment.z);
-                actor.transform.position = finalTransform + fixedHeight;
+                Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, 0, dispalcementAdjustment.z);
+                actor.transform.position = finalTransform;
                 placed++;
+                print(child.gameObject.name);
             }
 
             currentAngle += angleStep;
