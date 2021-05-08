@@ -19,5 +19,12 @@ namespace HackathonUtils
 
         }
     }
+
+    public enum Rotations {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT
+    }
 }
 

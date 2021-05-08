@@ -42,7 +42,7 @@ public class Handle : MonoBehaviour {
 
         // possible values for orientation entity: left, right, down, up
         // possible values for brain_part entity: brainstem, temporal, occipital,
-        // parietal, frontal, cerebellum
+        // parietal, frontal, cerebellum, group
 
         // what function should I call?
        
