@@ -57,16 +57,30 @@ public class ExhibitionController : MonoBehaviour
         }
     }
 
-    public void SignalSHowRotation(bool vertical)
+    public void SignalShowRotation(HackathonUtils.Rotations direction)
     {
-        if (vertical) {
-            rotatingV = true;
-            targetHRotation = mainShow.transform.rotation.eulerAngles.z + 90;
-        }
-        else {
-            rotatingH = true;
-            targetVRotation = mainShow.transform.rotation.eulerAngles.y + 90;
-
+        switch (direction)
+        {
+            case HackathonUtils.Rotations.UP:
+                rotatingV = true;
+                targetVRotation = mainShow.transform.rotation.eulerAngles.x - 90;
+                deltaRotaion = deltaRotaion < 0 ? -deltaRotaion : deltaRotaion;
+                break;
+            case HackathonUtils.Rotations.DOWN:
+                rotatingV = true;
+                targetVRotation = mainShow.transform.rotation.eulerAngles.x + 90;
+                deltaRotaion = deltaRotaion < 0 ? deltaRotaion : -deltaRotaion;
+                break;
+            case HackathonUtils.Rotations.LEFT:
+                rotatingH = true;
+                targetHRotation = mainShow.transform.rotation.eulerAngles.y - 90;
+                deltaRotaion = deltaRotaion < 0 ? deltaRotaion : -deltaRotaion;
+                break;
+            case HackathonUtils.Rotations.RIGHT:
+                rotatingH = true;
+                targetHRotation = mainShow.transform.rotation.eulerAngles.y + 90;
+                deltaRotaion = deltaRotaion < 0 ? -deltaRotaion : deltaRotaion;
+                break;
         }
     }
 
@@ -74,10 +88,11 @@ public class ExhibitionController : MonoBehaviour
     {
         if (rotatingH)
         {
-            if (Mathf.Abs(mainShow.transform.rotation.eulerAngles.z % 360) <= rotationThreshold)
+            float hAngleDistance = Mathf.Abs((mainShow.transform.rotation.eulerAngles.y - targetHRotation) % 360);
+            if (hAngleDistance <= rotationThreshold)
             {
                 Vector3 olValues = mainShow.transform.rotation.eulerAngles;
-                mainShow.transform.rotation = Quaternion.Euler(new Vector3(olValues.x, olValues.y, targetHRotation));
+                mainShow.transform.rotation = Quaternion.Euler(new Vector3(olValues.x, targetHRotation, olValues.z));
                 rotatingH = false;
                 return;
             }
@@ -85,10 +100,11 @@ public class ExhibitionController : MonoBehaviour
         }
         if (rotatingV)
         {
-            if (Mathf.Abs(mainShow.transform.rotation.eulerAngles.y % 360) <= rotationThreshold)
+            float vAngleDistance = Mathf.Abs((mainShow.transform.rotation.eulerAngles.x - targetVRotation) % 360);
+            if (vAngleDistance <= rotationThreshold)
             {
                 Vector3 olValues = mainShow.transform.rotation.eulerAngles;
-                mainShow.transform.rotation = Quaternion.Euler(new Vector3(olValues.x, targetVRotation, olValues.z));
+                mainShow.transform.rotation = Quaternion.Euler(new Vector3(targetVRotation, olValues.y, olValues.z));
                 rotatingV = false;
                 return;
             }
@@ -144,10 +160,31 @@ public class ExhibitionController : MonoBehaviour
         }
     }
 
+    void RotateManualControl()
+    {
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            SignalShowRotation(HackathonUtils.Rotations.UP);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            SignalShowRotation(HackathonUtils.Rotations.DOWN);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            SignalShowRotation(HackathonUtils.Rotations.LEFT);
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            SignalShowRotation(HackathonUtils.Rotations.RIGHT);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
         RotateMainShow();
         SelectManualControl();
+        RotateManualControl();
     }
 }
