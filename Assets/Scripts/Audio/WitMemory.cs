@@ -95,17 +95,11 @@ public class WitMemory : MonoBehaviour
         }
         if (Handle.has_new_audio)
         {
-
-
+            print("HAHAHA AYURA");
             StartCoroutine(audioListener.Speech(Handle.outputText));
+            print("JAJAJAJA WTF MANO");
             Handle.has_new_audio = false;
-
-        }
-
-        if (resetButton)
-        {
-            myButton.DefaultState();
-            resetButton = false;
+            MyButton.resetButton = true;
         }
     }
 
@@ -119,7 +113,6 @@ public class WitMemory : MonoBehaviour
         handle.HandleMe(text);
         print("Handle Text");
         print(text);
-        resetButton = true;
     }
 
     public void GetJSONText(byte[] BA_AudioFile)

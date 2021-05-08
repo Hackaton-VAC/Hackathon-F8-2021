@@ -19,11 +19,21 @@ public class MyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     Image image;
 
     public bool buttonPressed;
+    public static bool resetButton = false;
 
     void Start()
     {
         image = bg.gameObject.GetComponent<Image>();
         image.color = activeColor;
+    }
+
+    void Update()
+    {
+        if (resetButton)
+        {
+            DefaultState();
+            resetButton = false;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)

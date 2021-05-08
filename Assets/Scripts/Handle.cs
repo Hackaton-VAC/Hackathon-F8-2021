@@ -14,14 +14,25 @@ using MyProject.Speech;
 public class Handle : MonoBehaviour {
 	public static bool has_new_audio = false;
 	public static string outputText = "";
-
+	public GameObject popup;
+	public static bool help_action = false;
 
     public void Update()
     {
-        
-    }
+		if(help_action && outputText == "Hold the button and try one of these phrases!")
+        {
+			popup.SetActive(true);
+			help_action = false;
+		}
+		if (outputText == "Closing help")
+		{
+			popup.SetActive(false);
+			help_action = false;
+		}
 
-    public void HandleMe(string textToParse) {
+	}
+
+	public void HandleMe(string textToParse) {
 		audioListener.Start();
 		print (textToParse);
 		var response = JSON.Parse(textToParse);
@@ -131,10 +142,23 @@ public class Handle : MonoBehaviour {
 		case "focus_group":
 			//FocusCommand();
 			break;
+		case "open_help":
+			print("ABREME");
+			outputText = "Hold the button and try one of these phrases!";
+			help_action = true;
+
+			//FocusCommand();
+			print("ME ABRISTE");
+			break;
+		case "close_help":
+			outputText = "Closing help";
+			help_action = true;
+			//FocusCommand();
+			break;
 		default:
 			outputText = "Sorry, didn't understand your intent.";
             print("Auxilio 5");
-			StartCoroutine(audioListener.Speech(outputText));
+			//StartCoroutine(audioListener.Speech(outputText));
 			break;
 		}
 

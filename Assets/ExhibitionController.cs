@@ -29,7 +29,7 @@ public class ExhibitionController : MonoBehaviour
             Vector3 platformCenterDirection = (transform.position - actorRenderer.bounds.center).normalized;
             Quaternion lookRotation = Quaternion.LookRotation(platformCenterDirection);
 
-            //actor.transform.rotation.SetFromToRotation(finalTransform, transform.position);
+            actor.transform.rotation = lookRotation;
         }
     }
 
