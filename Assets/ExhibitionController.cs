@@ -11,9 +11,15 @@ public class ExhibitionController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        ArrangeBackstage();
+    }
+
+
+    public void ArrangeBackstage()
+    {
         int angleStep = 180 / (backStage.Count - 1);
-        int currentAngle = 0;
-        foreach(GameObject actor in backStage)
+        float currentAngle = transform.rotation.eulerAngles.y;
+        foreach (GameObject actor in backStage)
         {
             Renderer actorRenderer = actor.GetComponent<Renderer>();
             Vector2 position2D = HackathonUtils.Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
@@ -26,13 +32,13 @@ public class ExhibitionController : MonoBehaviour
             actor.transform.position = finalTransform + new Vector3(0, floatHeight, 0);
             currentAngle += angleStep;
 
-            Vector3 platformCenterDirection = (transform.position - actorRenderer.bounds.center).normalized;
-            Quaternion lookRotation = Quaternion.LookRotation(platformCenterDirection);
+            //Vector3 platformCenterDirection = (finalTransform - transform.position).normalized;
+            //Quaternion lookRotation = Quaternion.LookRotation(platformCenterDirection);
 
-            actor.transform.rotation = lookRotation;
+            // WTFFFFFFFFFFFFFFFFFFFFFFFFFFFff
+            //actor.transform.LookAt(transform.position);
         }
     }
-
 
     // Update is called once per frame
     void Update()
