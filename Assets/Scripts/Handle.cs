@@ -9,15 +9,30 @@ using IBM.Cloud.SDK.Authentication;
 using IBM.Cloud.SDK.Authentication.BasicAuth;
 using IBM.Cloud.SDK;
 using MyProject.Speech;
-
+using UnityEngine.UI;
 
 public class Handle : MonoBehaviour {
 	public static bool has_new_audio = false;
 	public static string outputText = "";
 	public GameObject popup;
+	public GameObject backStage;
+	public Text myText;
 	public static bool help_action = false;
+	public bool successAction = false;
+	public string title;
+	public string brainPart;
+	public string intent = "";
 
-    public void Update()
+	ExhibitionController controller;
+	Dictionary<string, string> uglyDict = new Dictionary<string, string> { { "brainstem","Stem" },
+		{ "temporal","Temporal Lobe" },
+		{ "occipital","Occipital Lobe" },
+		{ "parietal","Parietal Lobe" },
+		{ "frontal","Frontal Lobe" },
+		{ "cerebellum","Cerebellum" }
+		};
+
+	public void Update()
     {
 		if(help_action && outputText == "Hold the button and try one of these phrases!")
         {
@@ -29,29 +44,48 @@ public class Handle : MonoBehaviour {
 			popup.SetActive(false);
 			help_action = false;
 		}
+        if (has_new_audio)
+        {
+            if (successAction)
+            {
+				if(intent == "select_object")
+                {
+					controller.SetAsMainSHow(uglyDict[brainPart]);
+				}
+			}
+			StartCoroutine(audioListener.Speech(Handle.outputText));
+			Handle.has_new_audio = false;
+			MyButton.resetButton = true;
+		}
+	}
+
+    public void Start()
+    {
+		controller = backStage.GetComponent<ExhibitionController>();
 
 	}
 
-	public void HandleMe(string textToParse) {
+    public void HandleMe(string textToParse) {
 		audioListener.Start();
 		print (textToParse);
 		var response = JSON.Parse(textToParse);
 		print ("SimpleJSON: " + response.ToString());
 
-        string intent = response["intents"][0]["name"].Value.ToLower();
+        intent = response["intents"][0]["name"].Value.ToLower();
 
-        // possible values for orientation entity: left, right, down, up
-        // possible values for brain_part entity: brainstem, temporal, occipital,
-        // parietal, frontal, cerebellum
+		// possible values for orientation entity: left, right, down, up
+		// possible values for brain_part entity: brainstem, temporal, occipital,
+		// parietal, frontal, cerebellum
 
-        // what function should I call?
-       
-
+		// what function should I call?
+		title = "";
+		successAction = false;
         switch (intent)
 		{
 		case "about_object":
 			// When the user wants to know info about a specific brain part
-			if (response["entities"]["brain_part:brain_part"] != null) {
+			if (response["entities"]["brain_part:brain_part"] != null && ("group" != response["entities"]["brain_part:brain_part"][0]["value"])) {
+				title = response["entities"]["brain_part:brain_part"][0]["value"];
 				switch (response["entities"]["brain_part:brain_part"][0]["value"])
 				{
 					case "brainstem":
@@ -81,6 +115,7 @@ public class Handle : MonoBehaviour {
 					default:
 							print("Auxilio pa dentro");
 							outputText = "Sorry, I didn't understand the brain part that you want information about.";
+							title = "";
 							break;
 				}
 					print("Auxilio 1");
@@ -95,67 +130,70 @@ public class Handle : MonoBehaviour {
 			break;
 		case "group_object":
 			// When the user wants to group an independent part with the group 
-			if (response["entities"]["brain_part:brain_part"] != null) {
-				string brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
+			if (response["entities"]["brain_part:brain_part"] != null && ("group" != response["entities"]["brain_part:brain_part"][0]["value"]) ) {
+				brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
+				title = $@"Grouping {brainPart}";
+				successAction = true;
+				//controller.SetAsMainSHow(uglyDict[brainPart]);
 				//GroupCommand(brainPart);
-			}
+				}
 			else {
 					outputText = "Sorry, I didn't understand the brain part that you want to group.";
 					print("Auxilio 3");
 
-					//StartCoroutine(audioListener.Speech(outputText));
 			}
 			break;
 		case "divide_object":
 			// When the user wants to separate a part of the group
-			if (response["entities"]["brain_part:brain_part"] != null) {
-				string brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
+			if (response["entities"]["brain_part:brain_part"] != null && ("group" != response["entities"]["brain_part:brain_part"][0]["value"])) {
+				brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
+				title = $@"Dividing {brainPart}";
+				successAction = true;
 				//DivideCommand(brainPart);
-			}
+				}
 			else {
 					outputText = "Sorry, I didn't understand the brain part that you want to separate.";
-				StartCoroutine(audioListener.Speech(outputText));
 			}
 			break;
 		case "select_object":
 			if (response["entities"]["brain_part:brain_part"] != null) {
-				string brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
-				//SelectCommand(brainPart);
-			}
-			else {
+					brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
+					print(brainPart);
+					title = $@"Selecting {brainPart} ";
+					outputText = title;
+					successAction = true;
+				}
+				else {
 					outputText = "Sorry, I didn't understand the brain part that you want to select.";
-					print("Auxilio 4");
 
-					//StartCoroutine(audioListener.Speech(outputText));
+					print("Auxilio 4");
 			}
 			break;
 		case "turn_object":
 			// defining the default value
 			string orientation = "right";
-
 			if (response["entities"]["orientation:orientation"] != null) {
 				orientation = response["entities"]["orientation:orientation"][0]["value"];
-				
+				title = "Turning " + response["entities"]["brain_part:brain_part"][0]["value"];
+				successAction = true;
+
 			}
-			//TurnCommand(orientation);
-			break;
-		case "focus_group":
-			//FocusCommand();
-			break;
+				//TurnCommand(orientation);
+				break;
 		case "open_help":
-			print("ABREME");
 			outputText = "Hold the button and try one of these phrases!";
 			help_action = true;
-
+			title = "";
 			//FocusCommand();
-			print("ME ABRISTE");
 			break;
 		case "close_help":
 			outputText = "<speak version='1.0'><prosody pitch='150Hz'>Closing help</prosody></speak>";
 			help_action = true;
+			title = "";
 			//FocusCommand();
 			break;
 		default:
+			title = "";
 			outputText = "Sorry, didn't understand your intent.";
             print("Auxilio 5");
 			//StartCoroutine(audioListener.Speech(outputText));

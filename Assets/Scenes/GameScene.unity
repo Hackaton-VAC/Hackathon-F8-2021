@@ -1422,6 +1422,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 343779098}
+  backStage: {fileID: 701083125}
+  myText: {fileID: 114683824588014019}
+  title: 
+  brainPart: 
 --- !u!1 &324947248
 GameObject:
   m_ObjectHideFlags: 0
