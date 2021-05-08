@@ -24,7 +24,7 @@ public class Handle : MonoBehaviour {
 			popup.SetActive(true);
 			help_action = false;
 		}
-		if (outputText == "Closing help")
+		if (outputText == "<speak version='1.0'><prosody pitch='150Hz'>Closing help</prosody></speak>")
 		{
 			popup.SetActive(false);
 			help_action = false;
@@ -151,7 +151,7 @@ public class Handle : MonoBehaviour {
 			print("ME ABRISTE");
 			break;
 		case "close_help":
-			outputText = "Closing help";
+			outputText = "<speak version='1.0'><prosody pitch='150Hz'>Closing help</prosody></speak>";
 			help_action = true;
 			//FocusCommand();
 			break;
