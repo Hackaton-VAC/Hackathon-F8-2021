@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class SwitchToScene : MonoBehaviour
 {
 	//public Button yourButton;
-
+	public GameObject popup;
 	void Start()
 	{
 		//Button btn = yourButton.GetComponent<Button>();
@@ -23,4 +23,18 @@ public class SwitchToScene : MonoBehaviour
 	{
 		SceneManager.LoadScene("MainMenu");
 	}
+
+	public void HelpToggle()
+	{
+        if (popup.activeSelf)
+        {
+			popup.SetActive(false);
+		}
+        else
+        {
+			popup.SetActive(true);
+		}
+	}
+
+
 }
