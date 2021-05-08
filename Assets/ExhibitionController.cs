@@ -13,10 +13,7 @@ public class ExhibitionController : MonoBehaviour
     public float floatHeight = 2;
     public float deltaRotaion = 1;
     public float rotationThreshold = 2;
-    public float timeToPlace = 1;
-    public float switchAcceleration = 1;
-    public float switchVelocity = 1;
-    public float backStageThreshold = 0.5f;
+    
     float targetHRotation = 0;
     float targetVRotation = 0;
     bool rotatingH = false;
@@ -35,7 +32,6 @@ public class ExhibitionController : MonoBehaviour
         selecting = Enumerable.Repeat(false, backStage.Count).ToArray();
         stage = transform.Find(STAGE_NAME).gameObject;
         dressingRoom = transform.Find(DRESSINGROOM_NAME).gameObject;
-        ArrangeBackstage();
     }
 
 
@@ -122,55 +118,9 @@ public class ExhibitionController : MonoBehaviour
         }
 
         mainShow = relevo;
-        reshuffle = true;
-
+        dressingRoom.GetComponent<Stagehand>().ReShuffle();
     }
 
-
-    void SendToBack()
-    {
-        int angleStep = 180 / (backStage.Count - 1);
-        float currentAngle = transform.rotation.eulerAngles.y;
-        float dt = Time.deltaTime / timeToPlace;
-        int placed = 0;
-        foreach (GameObject actor in backStage)
-        {
-            if (Vector3.Distance(actor.transform.position, transform.position) < floatRadius - backStageThreshold )
-            {
-                Renderer actorRenderer = actor.GetComponent<Renderer>();
-                Vector2 position2D = HackathonUtils.Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
-                Vector3 resultingTransform = new Vector3(position2D.x, transform.position.y, position2D.y);
-                //actor.transform.position = resultingTransform;
-                Vector3 fromPlatFormToActor = transform.position - resultingTransform;
-                Vector3 fromPlatFormToActorsRenderer = transform.position - (actorRenderer.bounds.center + resultingTransform);
-                Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
-                Vector3 finalTransform = resultingTransform + dispalcementAdjustment;
-                //actor.transform.position = finalTransform;//new Vector3(0, floatHeight, 0);
-                actor.transform.position = Vector3.MoveTowards(actor.transform.position, finalTransform, switchAcceleration * dt * dt + switchVelocity * dt);
-            }
-            else
-            {
-                // TODO separate this and the Start() one into a method
-                Renderer actorRenderer = actor.GetComponent<Renderer>();
-                Vector2 position2D = HackathonUtils.Utils.GetPointOnCircle(new Vector2(transform.position.x, transform.position.z), floatRadius, currentAngle);
-                Vector3 resultingTransform = new Vector3(position2D.x, transform.position.y, position2D.y);
-                actor.transform.position = resultingTransform;
-                Vector3 fromPlatFormToActor = transform.position - resultingTransform;
-                Vector3 fromPlatFormToActorsRenderer = transform.position - actorRenderer.bounds.center;
-                Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
-                Vector3 finalTransform = resultingTransform + dispalcementAdjustment;
-                actor.transform.position = finalTransform + new Vector3(0, floatHeight, 0);
-                placed++;
-            }
-
-            currentAngle += angleStep;
-
-        }
-        if (placed == backStage.Count)
-        {
-            reshuffle = false;
-        }
-    }
 
     void SelectManualControl()
     {
@@ -198,10 +148,6 @@ public class ExhibitionController : MonoBehaviour
     void Update()
     {
         RotateMainShow();
-        if (reshuffle)
-        {
-            SendToBack();
-        }
         SelectManualControl();
     }
 }
