@@ -13,7 +13,7 @@ public class ExhibitionController : MonoBehaviour
     public float floatHeight = 2;
     public float deltaRotaion = 1;
     public float rotationThreshold = 2;
-    
+    float timeCount = 0f;
     float targetHRotation = 0;
     float targetVRotation = 0;
     bool rotatingH = false;
@@ -63,22 +63,22 @@ public class ExhibitionController : MonoBehaviour
         {
             case HackathonUtils.Rotations.UP:
                 rotatingV = true;
-                targetVRotation = mainShow.transform.rotation.eulerAngles.x - 90;
+                targetVRotation = 90;
                 deltaRotaion = deltaRotaion < 0 ? -deltaRotaion : deltaRotaion;
                 break;
             case HackathonUtils.Rotations.DOWN:
                 rotatingV = true;
-                targetVRotation = mainShow.transform.rotation.eulerAngles.x + 90;
+                targetVRotation = 90;
                 deltaRotaion = deltaRotaion < 0 ? deltaRotaion : -deltaRotaion;
                 break;
             case HackathonUtils.Rotations.LEFT:
                 rotatingH = true;
-                targetHRotation = mainShow.transform.rotation.eulerAngles.y - 90;
+                targetHRotation = 90;
                 deltaRotaion = deltaRotaion < 0 ? deltaRotaion : -deltaRotaion;
                 break;
             case HackathonUtils.Rotations.RIGHT:
                 rotatingH = true;
-                targetHRotation = mainShow.transform.rotation.eulerAngles.y + 90;
+                targetHRotation = 90;
                 deltaRotaion = deltaRotaion < 0 ? -deltaRotaion : deltaRotaion;
                 break;
         }
@@ -88,28 +88,23 @@ public class ExhibitionController : MonoBehaviour
     {
         if (rotatingH)
         {
-            float hAngleDistance = Mathf.Abs((mainShow.transform.rotation.eulerAngles.y - targetHRotation) % 360);
-            if (hAngleDistance <= rotationThreshold)
+            if (targetHRotation <= 0)
             {
-                Vector3 olValues = mainShow.transform.rotation.eulerAngles;
-                mainShow.transform.rotation = Quaternion.Euler(new Vector3(olValues.x, targetHRotation, olValues.z));
                 rotatingH = false;
                 return;
             }
             mainShow.transform.Rotate(Vector3.forward, deltaRotaion);
+            targetHRotation--;
         }
         if (rotatingV)
         {
-            float vAngleDistance = Mathf.Abs((mainShow.transform.rotation.eulerAngles.x - targetVRotation) % 360);
-            if (vAngleDistance <= rotationThreshold)
+            if (targetVRotation <= 0)
             {
-                Vector3 olValues = mainShow.transform.rotation.eulerAngles;
-                mainShow.transform.rotation = Quaternion.Euler(new Vector3(targetVRotation, olValues.y, olValues.z));
                 rotatingV = false;
                 return;
             }
-            mainShow.transform.Rotate(Vector3.up, deltaRotaion);
-
+            mainShow.transform.Rotate(Vector3.right, deltaRotaion);
+            targetVRotation--;
         }
     }
 
