@@ -48,9 +48,23 @@ public class Handle : MonoBehaviour {
         {
             if (successAction)
             {
-				if(intent == "select_object")
+                switch (intent)
                 {
-					controller.SetAsMainSHow(uglyDict[brainPart]);
+					case "select_object":
+						controller.SetAsMainSHow(uglyDict[brainPart]);
+						break;
+					case "group_object":
+						controller.SetAsMainSHow(uglyDict[brainPart]);
+						break;
+					case "divide_object":
+						controller.SetAsMainSHow(uglyDict[brainPart]);
+						break;
+					case "turn_object":
+						controller.SetAsMainSHow(uglyDict[brainPart]);
+						break;
+					default:
+						print("THIS SHOULD NOT HAPPEN");
+						break;
 				}
 			}
 			StartCoroutine(audioListener.Speech(Handle.outputText));
