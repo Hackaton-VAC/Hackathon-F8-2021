@@ -133,6 +133,33 @@ public class ExhibitionController : MonoBehaviour
     }
 
 
+    public void CollidePart(string toCollideName)
+    {
+        // PROTEGER CONTRA METEDOR NULO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (mainShow == null)
+        {
+            return;
+        }
+        GameObject grupo = backStage.Find((a) => a.transform.childCount > 0);
+        if (grupo != null)
+        {
+            if (grupo != mainShow)
+            {
+
+            }else
+            {
+                GameObject toCollide = backStage.Find((a) => a.name == toCollideName);
+                backStage.Remove(toCollide);
+                toCollide.GetComponent<CollideController>().MergeTo(mainShow);
+            }
+        } else
+        {
+            GameObject toCollide = backStage.Find((a) => a.name == toCollideName);
+            backStage.Remove(toCollide);
+            toCollide.GetComponent<CollideController>().MergeTo(mainShow);
+        }
+    }
+
     void SelectManualControl()
     {
         if (Input.GetKey(KeyCode.Keypad0)){

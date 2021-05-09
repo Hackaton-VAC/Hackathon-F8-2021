@@ -29,7 +29,6 @@ public class CollideController : MonoBehaviour
         float dt, holis;
         if (touched)
         {
-            Debug.Log(this.name + " Moviendo");
             diff = this.transform.parent.position - this.transform.position;
             diff.Normalize();
             holis = Vector3.Distance(this.transform.position, this.transform.parent.position);
@@ -38,23 +37,23 @@ public class CollideController : MonoBehaviour
                 touched = false;
                 this.transform.position = this.transform.parent.position;
                 this.transform.rotation = this.transform.parent.rotation;
-                while(this.transform.childCount!=0)
-                {
-                    attachedToMe = this.transform.GetChild(0).gameObject;
-                    attachedToMe.transform.SetParent(this.transform.parent);
-                }
+                //while(this.transform.childCount!=0)
+                //{
+                //    attachedToMe = this.transform.GetChild(0).gameObject;
+                //    attachedToMe.transform.SetParent(this.transform.parent);
+                //}
                 
             }
             else
             {
                 dt = Time.deltaTime / time;
                 dw = 1 - holis / total;
-                this.transform.position = Vector3.MoveTowards(this.transform.position,
-                                                              this.transform.parent.position,
+                this.transform.position = Vector3.MoveTowards(transform.position,
+                                                              transform.parent.position,
                                                               Acceleration * dt * dt +
                                                               V0 * dt);
-                this.transform.rotation = Quaternion.Lerp(this.transform.rotation,
-                                                          this.transform.parent.rotation,
+                this.transform.rotation = Quaternion.Lerp(transform.rotation,
+                                                          transform.parent.rotation,
                                                            dw);
 
                 //delta = diff *Acceleration* Time.deltaTime * Time.deltaTime +
@@ -63,38 +62,12 @@ public class CollideController : MonoBehaviour
             }
         }
     }
-    private void OnCollisionEnter(Collision other)
+
+    public void MergeTo(GameObject destiny)
     {
-        posother = other.transform.position;
-        myposition = this.transform.position;
-
-        Debug.Log(other.collider.name + " Dentro");
-        if (System.Int32.Parse(this.tag) < System.Int32.Parse(other.gameObject.tag))
-        {
-            //wrapper = new GameObject();
-            //wrapper.transform.SetParent(this.transform.parent);
-            //wrapper.AddComponent<BoxCollider>();
-            //wrapper.transform.position = this.transform.position;
-            boxwrap = this.GetComponent<BoxCollider>();
-            boxwrap.size = new Vector3(2.25f, 2.56f, 2.5f);
-
-        }
-        else
-        {
-            boxwrap = this.GetComponent<BoxCollider>();
-            boxwrap.enabled = false;
-            this.transform.SetParent(other.gameObject.transform);
-            touched = true;
-            total = Vector3.Distance(this.transform.position, this.transform.parent.position);
-            //this.transform.position = other.transform.position;
-            //this.transform.rotation = other.transform.rotation;
-
-        }
-        //wrapper = new GameObject();
-        //wrapper.AddComponent<BoxCollider>();
-        //boxwrap = wrapper.GetComponent<BoxCollider>();
-
-        //
+        transform.SetParent(destiny.transform);
+        touched = true;
+        total = Vector3.Distance(transform.position, destiny.transform.position);
     }
 
     private void OnCollisionExit(Collision other)
