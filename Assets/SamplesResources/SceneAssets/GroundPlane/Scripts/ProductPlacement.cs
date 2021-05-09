@@ -66,7 +66,6 @@ public class ProductPlacement : MonoBehaviour
     {
         this.mainCamera = Camera.main;
         this.groundPlaneUI = FindObjectOfType<GroundPlaneUI>();
-        this.chairRenderer = this.chair.GetComponent<MeshRenderer>();
         this.chairShadowRenderer = this.chairShadow.GetComponent<MeshRenderer>();
 
         SetupMaterials();
@@ -80,7 +79,7 @@ public class ProductPlacement : MonoBehaviour
                         this.augmentationScale,
                         this.augmentationScale);
 
-        this.chair.transform.localScale = this.productScale;
+        //this.chair.transform.localScale = this.productScale;
     }
 
 
@@ -138,7 +137,7 @@ public class ProductPlacement : MonoBehaviour
     {
         this.chair.transform.position = Vector3.zero;
         this.chair.transform.localEulerAngles = Vector3.zero;
-        this.chair.transform.localScale = this.productScale;
+        //this.chair.transform.localScale = this.productScale;
     }
 
     // Called by Anchor_Placement's DefaultTrackableEventHandler.OnTargetFound()
@@ -219,13 +218,20 @@ public class ProductPlacement : MonoBehaviour
     void SetVisible(bool visible)
     {
         // Set the visibility of the chair and it's shadow
-        this.chairRenderer.enabled = this.chairShadowRenderer.enabled = visible;
+        foreach (MeshRenderer childeRenderer in chair.GetComponentsInChildren<MeshRenderer>())
+        {
+            childeRenderer.enabled = visible;
+        }
     }
 
     void EnablePreviewModeTransparency(bool previewEnabled)
     {
-        this.chairRenderer.materials = previewEnabled ? this.chairMaterialsTransparent : this.chairMaterials;
-        this.chairShadowRenderer.material = previewEnabled ? this.chairShadowMaterialTransparent : this.chairShadowMaterial;
+
+        foreach (MeshRenderer childeRenderer in chair.GetComponentsInChildren<MeshRenderer>())
+        {
+            //childeRenderer.materials = previewEnabled ? this.chairMaterialsTransparent : this.chairMaterials;
+        }
+        //this.chairShadowRenderer.material = previewEnabled ? this.chairShadowMaterialTransparent : this.chairShadowMaterial;
     }
     #endregion // PRIVATE_METHODS
 
