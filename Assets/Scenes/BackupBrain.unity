@@ -1871,8 +1871,8 @@ MonoBehaviour:
   timeToPlace: 1
   switchVelocity: 1
   backStageThreshold: 0.1
-  floatRadius: 1
-  floatHeight: 1
+  floatRadius: 0.5
+  floatHeight: 0.5
 --- !u!114 &495666004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1959,7 +1959,7 @@ MonoBehaviour:
   actorAcceleration: 1
   actorVelocity: 1
   centerThreshold: 0.1
-  floatHeight: 0.5
+  floatHeight: 0.2
 --- !u!1 &599862450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,7 +3711,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1182390041
 Transform:
   m_ObjectHideFlags: 0
