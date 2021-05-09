@@ -110,6 +110,7 @@ public class ExhibitionController : MonoBehaviour
 
     public void SetAsMainSHow(string actorName)
     {
+        // TODO PROTEGER CONTRA RELEVO NULO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         GameObject relevo;
         if (actorName == "Group")
         {
@@ -118,6 +119,10 @@ public class ExhibitionController : MonoBehaviour
         else
         {
             relevo = backStage.Find((a) => a.name == actorName);
+        }
+        if (relevo == null)
+        {
+            return;
         }
         backStage.Remove(relevo);
         relevo.transform.SetParent(stage.transform);
@@ -135,28 +140,94 @@ public class ExhibitionController : MonoBehaviour
 
     public void CollidePart(string toCollideName)
     {
-        // PROTEGER CONTRA METEDOR NULO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         if (mainShow == null)
         {
             return;
         }
         GameObject grupo = backStage.Find((a) => a.transform.childCount > 0);
+        GameObject toCollide = backStage.Find((a) => a.name == toCollideName);
+
         if (grupo != null)
         {
             if (grupo != mainShow)
             {
-
+                if (toCollide != null)
+                {
+                    // Mainshow is not toCollide
+                    backStage.Remove(toCollide);
+                    toCollide.GetComponent<CollideController>().MergeTo(grupo);
+                    SetAsMainSHow("Group");
+                }
+                else
+                {
+                    if (mainShow.name == toCollideName)
+                    {
+                        // ToCollide is main Show
+                        mainShow.GetComponent<CollideController>().MergeTo(grupo);
+                        grupo.transform.SetParent(stage.transform);
+                        mainShow = grupo;
+                    }
+                    else
+                    {
+                        // toCollide does not exist or is inside group
+                        return;
+                    }
+                }
             }else
             {
-                GameObject toCollide = backStage.Find((a) => a.name == toCollideName);
-                backStage.Remove(toCollide);
-                toCollide.GetComponent<CollideController>().MergeTo(mainShow);
+                if (toCollide != null)
+                {
+                    // bring it to the group
+                    backStage.Remove(toCollide);
+                    toCollide.GetComponent<CollideController>().MergeTo(mainShow);
+                }else
+                {
+                    // toCollide is already in the group or doesn't exist
+                    return;
+                }
             }
         } else
         {
-            GameObject toCollide = backStage.Find((a) => a.name == toCollideName);
-            backStage.Remove(toCollide);
-            toCollide.GetComponent<CollideController>().MergeTo(mainShow);
+            if (toCollide != null)
+            {
+                // Group creation
+                backStage.Remove(toCollide);
+                toCollide.GetComponent<CollideController>().MergeTo(mainShow);
+            }else
+            {
+                // Unexistent toCollide
+                return;
+            }
+        }
+    }
+
+    public void RemovePartFromGroup(string toRemoveName)
+    {
+        if (mainShow == null)
+        {
+            return;
+        }
+        GameObject grupo = backStage.Find((a) => a.transform.childCount > 0);
+
+        if (grupo != null)
+        {
+            Transform desheredado = grupo.transform.Find(toRemoveName);
+            if (desheredado != null)
+            {
+                backStage.Add(desheredado.gameObject);
+                desheredado.SetParent(dressingRoom.transform);
+                dressingRoom.GetComponent<Stagehand>().ReShuffle();
+            }
+        }
+        else
+        {
+            Transform desheredado = mainShow.transform.Find(toRemoveName);
+            if ( desheredado != null)
+            {
+                backStage.Add(desheredado.gameObject);
+                desheredado.SetParent(dressingRoom.transform);
+                dressingRoom.GetComponent<Stagehand>().ReShuffle();
+            }
         }
     }
 
@@ -179,6 +250,66 @@ public class ExhibitionController : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.Keypad5)){
             SetAsMainSHow("Cerebellum");
+        }
+        if (Input.GetKey(KeyCode.Keypad6))
+        {
+            SetAsMainSHow("Group");
+        }
+    }
+
+    void CollideManualControl()
+    {
+        if (Input.GetKey(KeyCode.Z))
+        {
+            CollidePart("Frontal Lobe");
+        }
+        if (Input.GetKey(KeyCode.X))
+        {
+            CollidePart("Parietal Lobe");
+        }
+        if (Input.GetKey(KeyCode.C))
+        {
+            CollidePart("Temporal Lobe");
+        }
+        if (Input.GetKey(KeyCode.V))
+        {
+            CollidePart("Occipital Lobe");
+        }
+        if (Input.GetKey(KeyCode.B))
+        {
+            CollidePart("Stem");
+        }
+        if (Input.GetKey(KeyCode.N))
+        {
+            CollidePart("Cerebellum");
+        }
+    }
+
+    void RemoveManualControl()
+    {
+        if (Input.GetKey(KeyCode.A))
+        {
+            RemovePartFromGroup("Frontal Lobe");
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            RemovePartFromGroup("Parietal Lobe");
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            RemovePartFromGroup("Temporal Lobe");
+        }
+        if (Input.GetKey(KeyCode.F))
+        {
+            RemovePartFromGroup("Occipital Lobe");
+        }
+        if (Input.GetKey(KeyCode.G))
+        {
+            RemovePartFromGroup("Stem");
+        }
+        if (Input.GetKey(KeyCode.H))
+        {
+            RemovePartFromGroup("Cerebellum");
         }
     }
 
@@ -208,5 +339,7 @@ public class ExhibitionController : MonoBehaviour
         RotateMainShow();
         SelectManualControl();
         RotateManualControl();
+        CollideManualControl();
+        RemoveManualControl();
     }
 }

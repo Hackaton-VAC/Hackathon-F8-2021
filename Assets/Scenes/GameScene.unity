@@ -1424,8 +1424,10 @@ MonoBehaviour:
   popup: {fileID: 343779098}
   backStage: {fileID: 701083125}
   myText: {fileID: 114683824588014019}
+  successAction: 0
   title: 
   brainPart: 
+  intent: 
 --- !u!1 &324947248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1977,7 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToPlace: 1
-  switchVelocity: 1
+  switchVelocity: 0.5
   backStageThreshold: 0.1
   floatRadius: 2.5
   floatHeight: 0.25

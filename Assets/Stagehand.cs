@@ -78,7 +78,7 @@ public class Stagehand : MonoBehaviour
             float distanceToTarget = Vector3.Distance(aux, resultingTransform);
             float distanceToMyHeart = Vector3.Distance(actor.transform.position, aux);
 
-            if (!childArrived[child.name] &&  distanceToTarget > backStageThreshold && !(backStageThreshold < distanceToMyHeart))
+            if (!childArrived[child.name] &&  distanceToTarget > backStageThreshold)
             {
                 Vector3 fromPlatFormToActor = transform.position - resultingTransform;
                 actor.transform.position = Vector3.MoveTowards(actor.transform.position, resultingTransform, switchVelocity * dt);

@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class CollideController : MonoBehaviour
 {
-    Vector3 posother, myposition, delta;
     //GameObject wrapper;
-    BoxCollider boxwrap, minebox;
     bool touched = false;
     public float snap, V0, time, angularVelocity;
     float Acceleration, dw, alpha, total;
@@ -24,7 +22,7 @@ public class CollideController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 diff, avance = new Vector3(1, 1, 1);
+        Vector3 diff;
         GameObject attachedToMe;
         float dt, holis;
         if (touched)
@@ -37,11 +35,6 @@ public class CollideController : MonoBehaviour
                 touched = false;
                 this.transform.position = this.transform.parent.position;
                 this.transform.rotation = this.transform.parent.rotation;
-                //while(this.transform.childCount!=0)
-                //{
-                //    attachedToMe = this.transform.GetChild(0).gameObject;
-                //    attachedToMe.transform.SetParent(this.transform.parent);
-                //}
                 
             }
             else
@@ -55,10 +48,6 @@ public class CollideController : MonoBehaviour
                 this.transform.rotation = Quaternion.Lerp(transform.rotation,
                                                           transform.parent.rotation,
                                                            dw);
-
-                //delta = diff *Acceleration* Time.deltaTime * Time.deltaTime +
-                //        diff * V0 * Time.deltaTime;
-                //this.transform.Translate(delta);
             }
         }
     }
