@@ -44,7 +44,6 @@ public class PlaneManager : MonoBehaviour
     ContentPositioningBehaviour contentPositioningBehaviour;
     TouchHandler touchHandler;
     ProductPlacement productPlacement;
-    GroundPlaneUI groundPlaneUI;
     AnchorBehaviour planeAnchor, midAirAnchor, placementAnchor;
     int automaticHitTestFrameCount;
     static TrackableBehaviour.Status StatusCached = TrackableBehaviour.Status.NO_POSE;
@@ -112,7 +111,6 @@ public class PlaneManager : MonoBehaviour
 
         this.productPlacement = FindObjectOfType<ProductPlacement>();
         this.touchHandler = FindObjectOfType<TouchHandler>();
-        this.groundPlaneUI = FindObjectOfType<GroundPlaneUI>();
 
         this.planeAnchor = this.planeAugmentation.GetComponentInParent<AnchorBehaviour>();
         this.midAirAnchor = this.midAirAugmentation.GetComponentInParent<AnchorBehaviour>();
@@ -190,8 +188,6 @@ public class PlaneManager : MonoBehaviour
             return;
         }
 
-        if (!groundPlaneUI.IsCanvasButtonPressed())
-        {
             Debug.Log("HandleInteractiveHitTest() called.");
 
             // If the PlaneFinderBehaviour's Mode is Automatic, then the Interactive HitTestResult will be centered.
@@ -252,7 +248,6 @@ public class PlaneManager : MonoBehaviour
 
                     break;
             }
-        }
     }
 
     public void PlaceObjectInMidAir(Transform midAirTransform)
@@ -326,7 +321,6 @@ public class PlaneManager : MonoBehaviour
         UtilityHelper.EnableRendererColliderCanvas(this.placementAugmentation, false);
 
         this.productPlacement.DetachProductFromAnchor();
-        this.groundPlaneUI.Reset();
         this.touchHandler.enableRotation = false;
     }
 
@@ -360,7 +354,6 @@ public class PlaneManager : MonoBehaviour
     void SetMode(PlaneMode mode)
     {
         CurrentPlaneMode = mode;
-        this.groundPlaneUI.UpdateTitle();
         this.planeFinder.enabled = (mode == PlaneMode.GROUND || mode == PlaneMode.PLACEMENT);
         this.midAirPositioner.enabled = (mode == PlaneMode.MIDAIR);
         this.touchHandler.enableRotation = (mode == PlaneMode.PLACEMENT) &&
