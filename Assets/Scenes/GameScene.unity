@@ -1422,6 +1422,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 343779098}
+  backStage: {fileID: 701083125}
+  myText: {fileID: 114683824588014019}
+  title: 
+  brainPart: 
 --- !u!1 &324947248
 GameObject:
   m_ObjectHideFlags: 0
@@ -2041,7 +2045,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 598947216}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 445190bf6ab8a894c82466635a38d1b3, type: 3}
   m_Name: 
