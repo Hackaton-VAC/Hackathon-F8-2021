@@ -211,22 +211,54 @@ public class ExhibitionController : MonoBehaviour
 
         if (grupo != null)
         {
-            Transform desheredado = grupo.transform.Find(toRemoveName);
-            if (desheredado != null)
+            if (grupo.name == toRemoveName)
             {
-                backStage.Add(desheredado.gameObject);
-                desheredado.SetParent(dressingRoom.transform);
+                GameObject replacement = grupo.transform.GetChild(0).gameObject;
+                replacement.transform.SetParent(grupo.transform.parent);
+                foreach (Transform child in grupo.transform)
+                {
+                    child.SetParent(replacement.transform);
+                }
+                backStage.Add(grupo);
+                grupo.transform.SetParent(dressingRoom.transform);
                 dressingRoom.GetComponent<Stagehand>().ReShuffle();
             }
+            else
+            {
+                Transform desheredado = grupo.transform.Find(toRemoveName);
+                if (desheredado != null)
+                {
+                    backStage.Add(desheredado.gameObject);
+                    desheredado.SetParent(dressingRoom.transform);
+                    dressingRoom.GetComponent<Stagehand>().ReShuffle();
+                }
+            }
+                
         }
         else
         {
-            Transform desheredado = mainShow.transform.Find(toRemoveName);
-            if ( desheredado != null)
+            if (mainShow.name == toRemoveName && mainShow.transform.childCount > 0)
             {
-                backStage.Add(desheredado.gameObject);
-                desheredado.SetParent(dressingRoom.transform);
+                GameObject replacement = mainShow.transform.GetChild(0).gameObject;
+                replacement.transform.SetParent(mainShow.transform.parent);
+                foreach (Transform child in mainShow.transform)
+                {
+                    child.SetParent(replacement.transform);
+                }
+                backStage.Add(mainShow);
+                mainShow.transform.SetParent(dressingRoom.transform);
+                mainShow = replacement;
                 dressingRoom.GetComponent<Stagehand>().ReShuffle();
+            }
+            else
+            {
+                Transform desheredado = mainShow.transform.Find(toRemoveName);
+                if (desheredado != null)
+                {
+                    backStage.Add(desheredado.gameObject);
+                    desheredado.SetParent(dressingRoom.transform);
+                    dressingRoom.GetComponent<Stagehand>().ReShuffle();
+                }
             }
         }
     }

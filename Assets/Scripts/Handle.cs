@@ -14,7 +14,7 @@ using System;
 
 public class Handle : MonoBehaviour {
 	public static bool has_new_audio = false;
-	public static string outputText = "";
+	public string outputText = "";
 	public GameObject popup;
 	public GameObject backStage;
 	public Text myText;
@@ -56,10 +56,10 @@ public class Handle : MonoBehaviour {
 						controller.SetAsMainSHow(uglyDict[brainPart]);
 						break;
 					case "group_object":
-						controller.SetAsMainSHow(uglyDict[brainPart]);
+						controller.CollidePart(uglyDict[brainPart]);
 						break;
 					case "divide_object":
-						controller.SetAsMainSHow(uglyDict[brainPart]);
+						controller.RemovePartFromGroup(uglyDict[brainPart]);
 						break;
 					case "turn_object":
 						var jaja = (HackathonUtils.Rotations)Enum.Parse(typeof(HackathonUtils.Rotations), orientation.ToUpper());
@@ -71,7 +71,7 @@ public class Handle : MonoBehaviour {
 				}
 			}
 			myText.text = title;
-			StartCoroutine(audioListener.Speech(Handle.outputText));
+			StartCoroutine(audioListener.Speech(outputText));
 			Handle.has_new_audio = false;
 			MyButton.resetButton = true;
 		}
@@ -152,12 +152,13 @@ public class Handle : MonoBehaviour {
 				brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
 				title = $@"Grouping {brainPart}";
 				successAction = true;
-				//controller.SetAsMainSHow(uglyDict[brainPart]);
-				//GroupCommand(brainPart);
+				outputText = title;
+					//controller.SetAsMainSHow(uglyDict[brainPart]);
+					//GroupCommand(brainPart);
 				}
 			else {
-					outputText = "Sorry, I didn't understand the brain part that you want to group.";
-					print("Auxilio 3");
+				outputText = "Sorry, I didn't understand the brain part that you want to group.";
+				print("Auxilio 3");
 
 			}
 			break;
@@ -167,10 +168,11 @@ public class Handle : MonoBehaviour {
 				brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
 				title = $@"Dividing {brainPart}";
 				successAction = true;
+				outputText = title;
 				//DivideCommand(brainPart);
 				}
 			else {
-					outputText = "Sorry, I didn't understand the brain part that you want to separate.";
+				outputText = "Sorry, I didn't understand the brain part that you want to separate.";
 			}
 			break;
 		case "select_object":
