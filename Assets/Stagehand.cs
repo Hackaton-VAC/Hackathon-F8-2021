@@ -74,11 +74,7 @@ public class Stagehand : MonoBehaviour
 
             if (distanceToTarget > backStageThreshold)
             {
-                //actor.transform.position = resultingTransform;
                 Vector3 fromPlatFormToActor = transform.position - resultingTransform;
-                //Vector3 fromPlatFormToActorsRenderer = transform.position - actorRenderer.bounds.center;
-                //Vector3 dispalcementAdjustment = fromPlatFormToActor.magnitude > fromPlatFormToActorsRenderer.magnitude ? fromPlatFormToActor - fromPlatFormToActorsRenderer : fromPlatFormToActorsRenderer - fromPlatFormToActor;
-                //Vector3 finalTransform = resultingTransform + new Vector3(dispalcementAdjustment.x, 0, dispalcementAdjustment.z);
                 actor.transform.position = Vector3.MoveTowards(actor.transform.position, resultingTransform, switchVelocity * dt);
             }
             else
