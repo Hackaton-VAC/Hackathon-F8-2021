@@ -9,7 +9,7 @@ public class ExhibitionController : MonoBehaviour
     GameObject stage;
     GameObject dressingRoom;
     public List<GameObject> backStage;
-    public float floatRadius = 2;
+    public float floatRadius;
     public float floatHeight = 2;
     public float deltaRotaion = 1;
     public float rotationThreshold = 2;
