@@ -10,6 +10,7 @@ using IBM.Cloud.SDK.Authentication.BasicAuth;
 using IBM.Cloud.SDK;
 using MyProject.Speech;
 using UnityEngine.UI;
+using System;
 
 public class Handle : MonoBehaviour {
 	public static bool has_new_audio = false;
@@ -22,6 +23,7 @@ public class Handle : MonoBehaviour {
 	public string title;
 	public string brainPart;
 	public string intent = "";
+	string orientation = "";
 
 	ExhibitionController controller;
 	Dictionary<string, string> uglyDict = new Dictionary<string, string> { { "brainstem","Stem" },
@@ -60,7 +62,8 @@ public class Handle : MonoBehaviour {
 						controller.SetAsMainSHow(uglyDict[brainPart]);
 						break;
 					case "turn_object":
-						controller.SetAsMainSHow(uglyDict[brainPart]);
+						var jaja = (HackathonUtils.Rotations)Enum.Parse(typeof(HackathonUtils.Rotations), orientation.ToUpper());
+						controller.SignalShowRotation(jaja);
 						break;
 					default:
 						print("THIS SHOULD NOT HAPPEN");
@@ -185,11 +188,12 @@ public class Handle : MonoBehaviour {
 			break;
 		case "turn_object":
 			// defining the default value
-			string orientation = "right";
+			orientation = "right";
 			if (response["entities"]["orientation:orientation"] != null) {
 				orientation = response["entities"]["orientation:orientation"][0]["value"];
 				title = "Turning " + response["entities"]["brain_part:brain_part"][0]["value"];
 				successAction = true;
+				outputText = "Rotating Part";
 
 			}
 				//TurnCommand(orientation);
