@@ -336,8 +336,8 @@ public class ExhibitionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotateMainShow();
         SelectManualControl();
+        RotateMainShow();
         RotateManualControl();
         CollideManualControl();
         RemoveManualControl();

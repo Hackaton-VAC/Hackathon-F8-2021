@@ -37,7 +37,7 @@ public class WitMemory : MonoBehaviour
 
     // GameObject to use as a default spawn point
     public GameObject spawnPoint;
-    public Handle handle;
+    public HandleSolarSystem handle;
 
     private bool resetButton = false;
     // Use this for initialization
@@ -51,7 +51,7 @@ public class WitMemory : MonoBehaviour
         myButton = btn_mic.GetComponent<MyButton>();
         // set samplerate to 16000 for wit.ai
         samplerate = 16000;
-        handle = gameObject.GetComponent<Handle>();
+        handle = gameObject.GetComponent<HandleSolarSystem>();
         audioListener.Start();
         
     }

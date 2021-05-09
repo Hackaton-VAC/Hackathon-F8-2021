@@ -9,24 +9,26 @@ public class HandleSolarSystem : MonoBehaviour
     public static bool has_new_audio = false;
     public static string outputText = "";
     public GameObject popup;
+    public GameObject backStage;
     public Text myText;
     public static bool help_action = false;
     public bool successAction = false;
     public string title;
     public string planet;
     public string intent = "";
+    ExhibitionController controller;
 
     public Platform platform;
-    Dictionary<string, int> planetMap = new Dictionary<string, int> {
-        { "Mercury", 1},
-        { "Venus", 2},
-        { "Earth", 3},
-        { "Mars", 4},
-        { "Sun", 5},
-        { "Jupiter", 6},
-        { "Saturn", 7},
-        { "Uranus", 8},
-        { "Neptune", 9},
+    Dictionary<string, string> planetMap = new Dictionary<string, string> {
+        {"mercury", "Mercury"},
+        {"venus", "Venus"},
+        { "earth", "Earth"},
+        { "mars", "Mars"},
+        { "sun", "Sun"},
+        { "jupiter", "Jupiter"},
+        { "saturn", "Saturn"},
+        { "uranus", "Uranus"},
+        { "neptune", "Neptune"},
     };
 
     private string openHelpText = "Hold the button and try one of these phrases!";
@@ -50,13 +52,17 @@ public class HandleSolarSystem : MonoBehaviour
             StartCoroutine(audioListener.Speech(HandleSolarSystem.outputText));
             HandleSolarSystem.has_new_audio = false;
             MyButton.resetButton = true;
+            if (!String.IsNullOrEmpty(planet))
+            {
+                controller.SetAsMainSHow(planetMap[planet]);
+                planet = "";
+            }
         }
     }
 
     public void Start()
     {
-
-
+        controller = backStage.GetComponent<ExhibitionController>();
     }
 
     public void HandleMe(string textToParse)
@@ -76,11 +82,11 @@ public class HandleSolarSystem : MonoBehaviour
         switch (intent)
         {
             case "about_object":
+            case "select_object":
                 // When the user wants to know info about a specific brain part
                 if (response["entities"]["planet:planet"] != null && ("group" != response["entities"]["planet:planet"][0]["value"]))
                 {
                     planet = response["entities"]["planet:planet"][0]["value"];
-                    platform.focus(planetMap[planet]);
                     switch (planet)
                     {
                         case "sun":
