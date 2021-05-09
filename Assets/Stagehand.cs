@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class Stagehand : MonoBehaviour
     public float floatHeight = 2;
     bool reshuffle = false;
     Vector3 fixedHeight;
-
+    Dictionary<string, bool> childArrived = new Dictionary<string, bool>();
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,10 @@ public class Stagehand : MonoBehaviour
     public void ReShuffle()
     {
         reshuffle = true;
+        foreach (Transform child in transform)
+        {
+            childArrived[child.name] = false;
+        }
     }
 
     void ArrangeBackstage()
@@ -71,8 +76,9 @@ public class Stagehand : MonoBehaviour
             Vector3 resultingTransform = new Vector3(position2D.x, fixedHeight.y, position2D.y);
             var aux = new Vector3(actorRenderer.bounds.center.x, fixedHeight.y, actorRenderer.bounds.center.z);
             float distanceToTarget = Vector3.Distance(aux, resultingTransform);
+            float distanceToMyHeart = Vector3.Distance(actor.transform.position, aux);
 
-            if (distanceToTarget > backStageThreshold)
+            if (!childArrived[child.name] &&  distanceToTarget > backStageThreshold && !(backStageThreshold < distanceToMyHeart))
             {
                 Vector3 fromPlatFormToActor = transform.position - resultingTransform;
                 actor.transform.position = Vector3.MoveTowards(actor.transform.position, resultingTransform, switchVelocity * dt);
@@ -88,6 +94,7 @@ public class Stagehand : MonoBehaviour
                 actor.transform.position = finalTransform;
                 placed++;
                 print(child.gameObject.name);
+                childArrived[child.name] = true;
             }
 
             currentAngle += angleStep;
