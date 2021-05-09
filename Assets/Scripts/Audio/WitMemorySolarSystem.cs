@@ -13,7 +13,7 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using MyProject.Speech;
 
-public class WitMemorySolarSystem : MonoBehaviour
+public class WitMemory : MonoBehaviour
 {
     // Class Variables
     Task writing_request = null;
@@ -37,7 +37,7 @@ public class WitMemorySolarSystem : MonoBehaviour
 
     // GameObject to use as a default spawn point
     public GameObject spawnPoint;
-    public HandleSolarSystem handle;
+    public Handle handle;
 
     private bool resetButton = false;
     // Use this for initialization
@@ -51,16 +51,16 @@ public class WitMemorySolarSystem : MonoBehaviour
         myButton = btn_mic.GetComponent<MyButton>();
         // set samplerate to 16000 for wit.ai
         samplerate = 16000;
-        handle = gameObject.GetComponent<HandleSolarSystem>();
+        handle = gameObject.GetComponent<Handle>();
         audioListener.Start();
-
+        
     }
 
     // Update is called once per frame
 
     void Update()
     {
-
+        
         if (!btn_aux && myButton.buttonPressed)
         {
             print("Listening for command");
@@ -93,7 +93,7 @@ public class WitMemorySolarSystem : MonoBehaviour
             watch1.Stop();
             btn_aux = false;
         }
-        if (HandleSolarSystem.has_new_audio)
+        if (Handle.has_new_audio)
         {
             /*print("HAHAHA AYURA");
             StartCoroutine(audioListener.Speech(Handle.outputText));

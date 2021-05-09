@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.5748171, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &4
 LightmapSettings:
@@ -572,7 +572,6 @@ RectTransform:
   - {fileID: 1532380435}
   - {fileID: 408673666}
   - {fileID: 1004760387}
-  - {fileID: 1621903825}
   m_Father: {fileID: 1733591343}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -973,21 +972,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_Text
-      value: '1. Select Cerebellum
+      value: 'Learning by playing with TeachAR is very easy
 
 
-        2. Join Cerebellum
+        1. turn up
+        the volume on your device so you can hear our assistant
 
 
-        3. Divide
-        Cerebellum
+        2. Select
+        the module you want to try: Brain parts or Planets.
 
 
-        4. Rotate + Orientation (left, right, up, down) to rotate
-        the selected parts
+        3. Once in
+        there, you can tap on help Button (?) to know the available commands
 
 
-        5. Focus Group, to return to the entire group'
+        4.
+        Hold the microphone icon to speak to our assistant '
       objectReference: {fileID: 0}
     - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_Color.b
@@ -1052,7 +1053,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 270.8571
+      value: 338.4264
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1088,7 +1089,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -85.8793
+      value: -52.094666
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca2098eda18954719933727edf727b2e, type: 3}
@@ -1537,130 +1538,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1889411169}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1621903824
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 733563076}
-    m_Modifications:
-    - target: {fileID: 117118, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Name
-      value: Header - Light (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Text
-      value: These are the available commands
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: e43019a23f5f445b8b75a02ba9d4e423,
-        type: 3}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Pivot.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_Pivot.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 514.1127
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 28.6225
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -176.12366
-      objectReference: {fileID: 0}
-    - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 95.79437
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ca2098eda18954719933727edf727b2e, type: 3}
---- !u!224 &1621903825 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1621903824}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1622919064
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2054,7 +1931,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_Text
-      value: Intructions
+      value: Instructions
       objectReference: {fileID: 0}
     - target: {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_Color.b
@@ -2115,7 +1992,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 343.18
+      value: 389.835
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2151,7 +2028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -261.59
+      value: -238.26248
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -14,6 +14,8 @@ public class Cube : MonoBehaviour
     public float rotationSpeed = 0f;
     public float resizeSpeed = 65f;
 
+    public bool resizing = false;
+
     // Update is called once per frame
     public void Update()
     {
@@ -28,12 +30,17 @@ public class Cube : MonoBehaviour
         }
         if (currentScale != transform.localScale)
         {
+            resizing = true;
             float step = resizeSpeed * Time.deltaTime;
             transform.localScale = Vector3.MoveTowards(transform.localScale, currentScale, step);
             if (Vector3.Distance(transform.position, currentScale) < 0.1f)
             {
                 currentScale = transform.localScale;
             }
+        }
+        else
+        {
+            resizing = false;
         }
         transform.RotateAround(transform.position, Vector3.up, rotationSpeed * Time.deltaTime);
     }
