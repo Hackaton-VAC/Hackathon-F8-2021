@@ -5,23 +5,31 @@ using UnityEngine;
 public class Platform : MonoBehaviour
 {
     public List<Cube> cubes;
+
+    public float multiplier = 0.5f;
+
     int currentTarget = -1;
     // Start is called before the first frame update
     void Start()
     {
+        SetupPlanets();
+    }
+
+    void SetupPlanets()
+    {
         var separationAngle = 180 / (cubes.Count - 1);
         var n = 0;
-        foreach(Cube cube in cubes)
+        foreach (Cube cube in cubes)
         {
             Vector3 p = transform.position;
-            p.x += 2.0f;
+            p.x += 0.5f * multiplier;
             if (n % 2 == 0)
             {
-                p.y += 0.4f;
+                p.y += 0.1f * multiplier;
             }
             else
             {
-                p.y += 1.2f;
+                p.y += 0.2f * multiplier;
             }
 
 
@@ -34,7 +42,6 @@ public class Platform : MonoBehaviour
             cube.currentScale = cube.transform.localScale;
         }
     }
-
     public void focus(int index)
     {
         if (currentTarget >= 0)
@@ -50,7 +57,7 @@ public class Platform : MonoBehaviour
         currentTarget = index;
 
         Vector3 center = transform.position;
-        center.y += 1.5f;
+        center.y += 0.7f * multiplier;
         cubes[currentTarget].currentPosition = center;
         print(cubes[currentTarget].currentScale);
         cubes[currentTarget].currentScale = cubes[currentTarget].transform.localScale * 3.5f;
