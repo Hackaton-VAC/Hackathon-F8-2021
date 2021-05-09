@@ -16,12 +16,12 @@ public class SwitchToScene : MonoBehaviour
 
 	public void StartBrainGame()
 	{
-		SceneManager.LoadScene("GameScene");
+		SceneManager.LoadScene("BackupBrain");
 	}
 
     public void StartSolarSystemGame()
     {
-        SceneManager.LoadScene("SolarSystem");
+        SceneManager.LoadScene("SolarScene");
     }
 
     public void BackToMenu()
