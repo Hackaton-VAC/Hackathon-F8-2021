@@ -342,11 +342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 150
+      value: 191.1667
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 150
+      value: 191.1667
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_LocalScale.x
@@ -386,11 +386,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 229.03
+      value: 227
       objectReference: {fileID: 0}
     - target: {fileID: 22448376, guid: ca2098eda18954719933727edf727b2e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 115
+      value: 95.583
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11421782, guid: ca2098eda18954719933727edf727b2e, type: 3}
@@ -428,7 +428,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 71cb80456cf36452d95ed5f54cbfba08, type: 3}
+  m_Sprite: {fileID: 21300000, guid: df21a094c13ea1b4b8a4f17b899887ed, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
