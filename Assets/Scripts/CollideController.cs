@@ -30,7 +30,7 @@ public class CollideController : MonoBehaviour
             diff = this.transform.parent.position - this.transform.position;
             diff.Normalize();
             holis = Vector3.Distance(this.transform.position, this.transform.parent.position);
-            if (diff[0] <= snap && diff[1] < snap && diff[2] < snap)
+            if (holis < snap)
             {
                 touched = false;
                 this.transform.position = this.transform.parent.position;

@@ -101,16 +101,13 @@ public class ProductPlacement : MonoBehaviour
 
             if (TouchHandler.IsSingleFingerDragging || (VuforiaRuntimeUtilities.IsPlayMode() && Input.GetMouseButton(0)))
             {
-                if (!this.groundPlaneUI.IsCanvasButtonPressed())
-                {
-                    this.cameraToPlaneRay = this.mainCamera.ScreenPointToRay(Input.mousePosition);
+                this.cameraToPlaneRay = this.mainCamera.ScreenPointToRay(Input.mousePosition);
 
-                    if (Physics.Raycast(this.cameraToPlaneRay, out this.cameraToPlaneHit))
+                if (Physics.Raycast(this.cameraToPlaneRay, out this.cameraToPlaneHit))
+                {
+                    if (this.cameraToPlaneHit.collider.gameObject.name == floorName)
                     {
-                        if (this.cameraToPlaneHit.collider.gameObject.name == floorName)
-                        {
-                            this.chair.PositionAt(this.cameraToPlaneHit.point);
-                        }
+                        this.chair.PositionAt(this.cameraToPlaneHit.point);
                     }
                 }
             }
