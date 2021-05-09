@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BackupBrain.unity
     guid: 91a829aa0c45080448c5fded899f54ad
+  - enabled: 1
+    path: Assets/Scenes/SolarScene.unity
+    guid: 32576dcca14d3e146a31eb7d352ea1de
   m_configObjects: {}
