@@ -7,6 +7,9 @@ public class Platform : MonoBehaviour
     public List<Cube> cubes;
 
     public float multiplier = 0.5f;
+    public float platformHeight;
+    public float radius;
+    public float initialHeight;
 
     int currentTarget = -1;
     // Start is called before the first frame update
@@ -44,7 +47,11 @@ public class Platform : MonoBehaviour
     }
     public void focus(int index)
     {
-        if (currentTarget >= 0)
+        if (index == currentTarget || cubes[index].resizing)
+        {
+            return;
+        }
+        else if (currentTarget >= 0)
         {
             cubes[currentTarget].currentPosition = cubes[currentTarget].blurredPosition;
             cubes[currentTarget].currentScale = cubes[currentTarget].blurredScale;
@@ -57,11 +64,9 @@ public class Platform : MonoBehaviour
         currentTarget = index;
 
         Vector3 center = transform.position;
-        center.y += 0.7f * multiplier;
+        center.y += 0.5f * multiplier;
         cubes[currentTarget].currentPosition = center;
-        print(cubes[currentTarget].currentScale);
         cubes[currentTarget].currentScale = cubes[currentTarget].transform.localScale * 3.5f;
-        print(cubes[currentTarget].currentScale);
     }
 
 

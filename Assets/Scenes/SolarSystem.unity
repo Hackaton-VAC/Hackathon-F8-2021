@@ -453,6 +453,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183638110}
   m_CullTransparentMesh: 1
+--- !u!114 &199088734 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7728167880510715058, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+    type: 3}
+  m_PrefabInstance: {fileID: 488936282}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f92d46fc83cf4950bee01f4dbb94951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &252185343
 GameObject:
   m_ObjectHideFlags: 0
@@ -1042,10 +1054,35 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7512323704849676182, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323704957533785, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323704974222145, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323705008234664, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 7512323705048702080, guid: ebdbd8d6b9971459b90667611c5dc1f6,
         type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323705048702081, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 7512323705048702110, guid: ebdbd8d6b9971459b90667611c5dc1f6,
         type: 3}
@@ -1061,6 +1098,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323705263350820, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323705533706856, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323705533706856, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: rotationSpeed
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 7512323705891751274, guid: ebdbd8d6b9971459b90667611c5dc1f6,
         type: 3}
@@ -1136,6 +1188,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SolarSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323706195286989, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7512323706413509316, guid: ebdbd8d6b9971459b90667611c5dc1f6,
+        type: 3}
+      propertyPath: speed
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 8055703772892104808, guid: ebdbd8d6b9971459b90667611c5dc1f6,
         type: 3}
@@ -3183,8 +3245,9 @@ GameObject:
   - component: {fileID: 1583980745}
   - component: {fileID: 1583980744}
   - component: {fileID: 1583980743}
-  - component: {fileID: 1583980742}
   - component: {fileID: 1583980741}
+  - component: {fileID: 1583980742}
+  - component: {fileID: 1583980748}
   m_Layer: 0
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -3221,16 +3284,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1583980740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a96084544a6c3ac498dfb2e441cb800b, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e62ab54b2f404541aa6f07713617a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   popup: {fileID: 343779098}
-  backStage: {fileID: 0}
-  myText: {fileID: 0}
+  myText: {fileID: 114683824588014019}
   successAction: 0
   title: 
-  brainPart: 
+  planet: 
   intent: 
+  platform: {fileID: 199088734}
 --- !u!114 &1583980743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3322,6 +3385,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1583980748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583980740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e33310741f83434b8d506cdd0984d16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn_mic: {fileID: 4039010578093205446}
+  myButton: {fileID: 0}
+  audioText: {fileID: 114683824588014019}
+  commandClip: {fileID: 0}
+  moveTime: 0
+  yOffset: 0
+  spawnPoint: {fileID: 0}
+  handle: {fileID: 0}
 --- !u!1 &1586524244 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 905429c7eb6a07245bf7f048fb91329c,

@@ -49,25 +49,29 @@ namespace MyProject.Speech
 		public static IEnumerator Speech(string text)
 		{
 			Debug.Log("Me llaman para hablar");
-			byte[] synthesizeResponse = null;
-			AudioClip clip = null;
-			tts.Synthesize(
-				callback: (DetailedResponse<byte[]> response, IBMError error) =>
-				{
-					synthesizeResponse = response.Result;
-					Debug.Log("ExampleTextToSpeechV1");
-					clip = WaveFile.ParseWAV("myClip", synthesizeResponse);
-					PlayClip(clip);
-				},
-				text: text,
-				voice: allisionVoice,
-				accept: synthesizeMimeType
-			);
+            if (text != "")
+            {
+                byte[] synthesizeResponse = null;
+                AudioClip clip = null;
+                tts.Synthesize(
+                    callback: (DetailedResponse<byte[]> response, IBMError error) =>
+                    {
+                        synthesizeResponse = response.Result;
+                        Debug.Log("ExampleTextToSpeechV1");
+                        clip = WaveFile.ParseWAV("myClip", synthesizeResponse);
+                        PlayClip(clip);
+                    },
+                    text: text,
+                    voice: allisionVoice,
+                    accept: synthesizeMimeType
+                );
 
-			while (synthesizeResponse == null)
-				yield return null;
+                while (synthesizeResponse == null)
+                    yield return null;
 
-			yield return new WaitForSeconds(clip.length);
+                yield return new WaitForSeconds(clip.length);
+            }
+            yield return null;
 		}
 	}
 }
