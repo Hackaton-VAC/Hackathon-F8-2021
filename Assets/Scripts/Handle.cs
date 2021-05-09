@@ -70,6 +70,7 @@ public class Handle : MonoBehaviour {
 						break;
 				}
 			}
+			myText.text = title;
 			StartCoroutine(audioListener.Speech(Handle.outputText));
 			Handle.has_new_audio = false;
 			MyButton.resetButton = true;
