@@ -10,6 +10,7 @@ public class MasterCeremony : MonoBehaviour
     public float centerThreshold = 1;
     // This avoids collitions problems with the platform (advised to be the same as the Platform one)
     public float floatHeight = 1;
+    float timeCount = 0;
     Vector3 fixedHeight;
     // Start is called before the first frame update
     void Start()
@@ -35,10 +36,12 @@ public class MasterCeremony : MonoBehaviour
             if ( Vector3.Distance(mainShow.transform.position, transform.position) > centerThreshold)
             {
                 mainShow.transform.position = Vector3.MoveTowards(mainShow.transform.position, transform.position + fixedHeight, actorAcceleration * dt * dt + actorVelocity * dt);
+                mainShow.transform.rotation = Quaternion.Slerp(mainShow.transform.rotation, transform.rotation, centerThreshold/distance);
             }
             else
             {
                 mainShow.transform.position = transform.position + fixedHeight;
+                mainShow.transform.rotation = transform.rotation;
             }
         }
     }
