@@ -14,12 +14,17 @@ public class SwitchToScene : MonoBehaviour
 		//btn.onClick.AddListener(TaskOnClick);
 	}
 
-	public void StartGame()
+	public void StartBrainGame()
 	{
 		SceneManager.LoadScene("GameScene");
 	}
 
-	public void BackToMenu()
+    public void StartSolarSystemGame()
+    {
+        SceneManager.LoadScene("SolarSystem");
+    }
+
+    public void BackToMenu()
 	{
 		SceneManager.LoadScene("MainMenu");
 	}
