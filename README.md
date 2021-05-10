@@ -35,3 +35,6 @@ Both select and information commands will give the user information about the mo
 
 ## The team
 This project was developed for: [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/), [María Victoria Jorge](https://www.linkedin.com/in/maria-victoria-jorge), [Carlos Spaggiari](https://www.linkedin.com/in/carlos-spaggiari-52b6988b/) and [Arturo Toro](https://www.linkedin.com/in/arturot1212/).
+
+## Credits
+Planet models by [Akshat](https://sketchfab.com/shooter24994) are licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
