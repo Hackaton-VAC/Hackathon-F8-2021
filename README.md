@@ -1,12 +1,14 @@
 # Hackathon-F8-2021
 
 ## About the project
-**TeachAR** is an educational AR application that allows kids to learn by experimenting anywhere and anytime, interacting with a voice assistant. This project was developed for the [**F8 Refresh: Hackathon 2021**](https://f82021.facebookhackathons.com/) and it is not intended for commercial use. Our motivation was to help kids to learn new topics through the use of technology. We see this necessary on these days, when the number of children staying in home for school has increased significantly since the COVID-19 pandemic.
+**TeachAR** is an educational AR application that allows kids to learn by experimenting anywhere and anytime, interacting with a voice assistant. This project was developed for the [**F8 Refresh: Hackathon 2021**](https://f82021.facebookhackathons.com/) and it is not intended for commercial use. Our motivation was to help kids to learn new topics through the use of technology. We see this necessary on these days, when the number of kids being home-schooled has increased significantly since the COVID-19 pandemic. 
 
 ## Supported Devices
-Devices used to run this application should necessarily have a back camera, microphone and sound output available.
+Devices used to run this application should necessarily have access to a back camera, microphone and sound output available.
 
-Before installing the app on your device you should check this [link](https://library.vuforia.com/platform-support/vuforia-engine-recommended-devices.html) to know if it is supported for Vuforia. It should be supported for the Ground Plane feature.
+Before installing the app on your device you should check if it is supported for Vuforia. You can check if you own a supported device for the Ground Plane feature using this [link](https://library.vuforia.com/platform-support/vuforia-engine-recommended-devices.html).
+
+We tested the application on iOS and Android devices supported by Vuforia.
 
 ## Available modules
 For the hackathon we developed two modules: brain parts and solar system. 
@@ -30,6 +32,9 @@ Both select and information commands will give the user information about the mo
 - Vuforia: augmented reality engine used to detect the plane where the user wants to place the objects. We integrated it directly with Unity and used the Ground Plane feature.
 - Wit.ai: NLU interface developed by Facebook. We integrated it with Unity through HTTP requests. We also used the speech to text capabilities to process the voice interaction sent for the user and extract the entities and intents with the NLU model.
 - IBM Watson Speech to Text: as we did not have an endpoint to perform text-to-speech with wit.ai, we decided to use the IBM Watson text-to-speech API, so that the virtual assistant of our application could respond to all the user's commands also by voice. We used the Unity SDK generated for IBM to integrate it directly with Unity.
+
+## User privacy
+Our application never stores any type of user data or their interaction with it. The only data stored is made on the side of Wit.ai upon receiving the instructions from the clients. This should not initially contain personal information, because it is not prompted to the user, but as system administrators it is possible to apply periodic maintenance tasks to remove those records.
 
 ## Demo video
 
