@@ -43,4 +43,7 @@ Demo video of the project can be found [here](https://www.youtube.com/embed/9Tnf
 This project was developed for: [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/), [María Victoria Jorge](https://www.linkedin.com/in/maria-victoria-jorge), [Carlos Spaggiari](https://www.linkedin.com/in/carlos-spaggiari-52b6988b/) and [Arturo Toro](https://www.linkedin.com/in/arturot1212/).
 
 ## Credits
-Planet models by [Akshat](https://sketchfab.com/shooter24994) and the Sun model by [SebastianSosnowski](https://sketchfab.com/SebastianSosnowski) are licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
+- Planet models by [Akshat](https://sketchfab.com/shooter24994) and the Sun model by [SebastianSosnowski](https://sketchfab.com/SebastianSosnowski) are licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
+- Platform model by [Bill Nguyen](https://www.cgtrader.com/free-3d-models/architectural/decoration/scifi-pedestal-turntable) has Royalty Free License.
+- Arcade Font by [Yuji Adachi](https://fontmeme.com/fonts/arcade-yuji-adachi-font/) has Free License.
+- Clean Settings UI by [Landan Lloyd](https://assetstore.unity.com/packages/tools/gui/clean-settings-ui-65588).
