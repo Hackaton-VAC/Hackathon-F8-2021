@@ -34,7 +34,7 @@ Both select and information commands will give the user information about the mo
 - IBM Watson Speech to Text: as we did not have an endpoint to perform text-to-speech with wit.ai, we decided to use the IBM Watson text-to-speech API, so that the virtual assistant of our application could respond to all the user's commands also by voice. We used the Unity SDK generated for IBM to integrate it directly with Unity.
 
 ## User privacy
-Our application never stores any type of user data or their interaction with it. The only data stored is made on the side of Wit.ai upon receiving the instructions from the clients. This should not initially contain personal information, because it is not prompted to the user, but as system administrators it is possible to apply periodic maintenance tasks to remove those records.
+Our application never stores any type of user data or their interaction with it. The only data stored is present on the side of Wit.ai upon receiving the instructions from the clients. This should not initially contain personal information, because it is not prompted to the user, but as system administrators it is possible to apply periodic maintenance tasks to remove those records.
 
 ## Demo video
 
