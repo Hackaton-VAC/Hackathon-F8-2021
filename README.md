@@ -11,7 +11,7 @@ Before installing the app on your device you should check if it is supported for
 We tested the application on iOS and Android devices supported by Vuforia, but the APK generated is only for Android devices.
 
 ## Available modules
-For the hackathon we developed two modules: brain parts and solar system. 
+For the hackathon we developed two learning experiences: brain parts and solar system. 
 
 ### Brain parts commands:
 Brain parts available are: cerebellum, brain stem and parietal, frontal, temporal and occipital lobes. Brain parts are also associated with colors, in case the user don't know yet the real names. You can use all the commands referring with the real name or with the color associated.
