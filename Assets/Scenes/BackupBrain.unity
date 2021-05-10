@@ -1346,6 +1346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4c00ac6d2a6f458a83f40d7152fa688, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  textTitle: {fileID: 114683824588014019}
   chair: {fileID: 95560667}
   chairShadow: {fileID: 1182390040}
   translationIndicator: {fileID: 1069037701}
@@ -2556,6 +2557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 0}
   StatusFilter: 2
   OnTargetFound:
     m_PersistentCalls:
@@ -4822,6 +4824,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 0}
   StatusFilter: 2
   OnTargetFound:
     m_PersistentCalls:
@@ -5188,6 +5191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a917f0af64a6423093132dab321c15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  titleText: {fileID: 0}
   StatusFilter: 2
   OnTargetFound:
     m_PersistentCalls:
@@ -6477,7 +6481,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Search for a Plane...
+  m_Text: Tap to Place
 --- !u!114 &114742924189721721
 MonoBehaviour:
   m_ObjectHideFlags: 0

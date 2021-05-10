@@ -6,6 +6,7 @@ countries.
 ==============================================================================*/
 
 using UnityEngine;
+using UnityEngine.UI;
 using Vuforia;
 
 public class ProductPlacement : MonoBehaviour
@@ -15,6 +16,7 @@ public class ProductPlacement : MonoBehaviour
     public bool AnchorIsTracking { get; private set; }
     #endregion // PUBLIC_MEMBERS
 
+    public Text textTitle;
 
     #region PRIVATE_MEMBERS
     [Header("Augmentation Objects")]
@@ -108,6 +110,7 @@ public class ProductPlacement : MonoBehaviour
                     if (this.cameraToPlaneHit.collider.gameObject.name == floorName)
                     {
                         this.chair.PositionAt(this.cameraToPlaneHit.point);
+                        textTitle.text = "";
                     }
                 }
             }
