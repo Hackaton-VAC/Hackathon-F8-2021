@@ -63,43 +63,27 @@ public class WitMemory: MonoBehaviour
 
         if (!btn_aux && myButton.buttonPressed)
         {
-            print("Listening for command");
             commandClip = Microphone.Start(null, false, 10, samplerate);  //Start recording (rewriting older recordings)
             btn_aux = true;
         }
         else if (btn_aux && !myButton.buttonPressed)
         {
-            var watch = new System.Diagnostics.Stopwatch();
-            var watch1 = new System.Diagnostics.Stopwatch();
-            watch.Start();
-            // Debug
-            print("Thinking ...");
             // Save the audio file
             Microphone.End(null);
             // Call trim here (Record time between start and end)
+            print("Saving Audio");
             byte[] audioFile = WavMemory.Save("sample", commandClip);
-
+            print("Audio Save");
             // At this point, we can delete the existing audio clip
             commandClip = null;
 
             //Grab the most up-to-date JSON file
             token = "ISUHEKFR3XLJ5S7BOZVJSBPUNN3VMKZF";
-            watch.Stop();
 
             //Start a coroutine called "WaitForRequest" with that WWW variable passed in as an argument
-            //audioFile
-            watch1.Start();
+
             GetJSONText(audioFile);
-            watch1.Stop();
             btn_aux = false;
-        }
-        if (Handle.has_new_audio)
-        {
-            /*print("HAHAHA AYURA");
-            StartCoroutine(audioListener.Speech(Handle.outputText));
-            print("JAJAJAJA WTF MANO");
-            Handle.has_new_audio = false;
-            MyButton.resetButton = true;*/
         }
     }
 

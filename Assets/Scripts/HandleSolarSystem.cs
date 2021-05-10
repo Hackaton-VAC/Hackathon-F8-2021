@@ -49,6 +49,7 @@ public class HandleSolarSystem : MonoBehaviour
         if (has_new_audio)
         {
             myText.text = title;
+            print($@"OUTPUTTT: {outputText}");
             StartCoroutine(audioListener.Speech(HandleSolarSystem.outputText));
             HandleSolarSystem.has_new_audio = false;
             MyButton.resetButton = true;

@@ -71,6 +71,7 @@ public class Handle : MonoBehaviour {
 				}
 			}
 			myText.text = title;
+			print($@"OUTPUTTEXT: {outputText}");
 			StartCoroutine(audioListener.Speech(outputText));
 			Handle.has_new_audio = false;
 			MyButton.resetButton = true;
@@ -85,10 +86,7 @@ public class Handle : MonoBehaviour {
 
     public void HandleMe(string textToParse) {
 		audioListener.Start();
-		print (textToParse);
 		var response = JSON.Parse(textToParse);
-		print ("SimpleJSON: " + response.ToString());
-
         intent = response["intents"][0]["name"].Value.ToLower();
 
 		// possible values for orientation entity: left, right, down, up
@@ -131,18 +129,14 @@ public class Handle : MonoBehaviour {
 										It controls balance, coordinates movement, and maintains muscle tone.";
 							break;
 					default:
-							print("Auxilio pa dentro");
 							outputText = "Sorry, I didn't understand the brain part that you want information about.";
 							title = "";
 							break;
 				}
-					print("Auxilio 1");
 				//StartCoroutine(audioListener.Speech(outputText));
 			}
 			else {
 				outputText = "Sorry, I didn't understand the brain part that you want information about.";
-					print("Auxilio 2");
-
 					//StartCoroutine(audioListener.Speech(outputText));
 			}
 			break;
@@ -158,7 +152,6 @@ public class Handle : MonoBehaviour {
 				}
 			else {
 				outputText = "Sorry, I didn't understand the brain part that you want to group.";
-				print("Auxilio 3");
 
 			}
 			break;
@@ -178,15 +171,12 @@ public class Handle : MonoBehaviour {
 		case "select_object":
 			if (response["entities"]["brain_part:brain_part"] != null) {
 					brainPart = response["entities"]["brain_part:brain_part"][0]["value"];
-					print(brainPart);
 					title = $@"Selecting {brainPart} ";
 					outputText = title;
 					successAction = true;
 				}
 				else {
 					outputText = "Sorry, I didn't understand the brain part that you want to select.";
-
-					print("Auxilio 4");
 			}
 			break;
 		case "turn_object":
@@ -216,7 +206,6 @@ public class Handle : MonoBehaviour {
 		default:
 			title = "";
 			outputText = "Sorry, didn't understand your intent.";
-            print("Auxilio 5");
 			//StartCoroutine(audioListener.Speech(outputText));
 			break;
 		}
