@@ -37,6 +37,7 @@ Both select and information commands will give the user information about the mo
 Our application never stores any type of user data or their interaction with it. The only data stored are present on the side of Wit.ai upon receiving the instructions from the clients. This should not initially contain personal information, because it is not prompted to the user, but as system administrators it is possible to apply periodic maintenance tasks to remove sensitive records.
 
 ## Demo video
+Demo video of the project can be found [here](https://www.youtube.com/embed/9TnfNIRXPTk)
 
 ## The team
 This project was developed for: [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/), [María Victoria Jorge](https://www.linkedin.com/in/maria-victoria-jorge), [Carlos Spaggiari](https://www.linkedin.com/in/carlos-spaggiari-52b6988b/) and [Arturo Toro](https://www.linkedin.com/in/arturot1212/).
