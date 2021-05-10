@@ -13,7 +13,7 @@ using UnityEngine.UI;
 using System.Threading.Tasks;
 using MyProject.Speech;
 
-public class WitMemory : MonoBehaviour
+public class WitMemorySolarSystem : MonoBehaviour
 {
     // Class Variables
     Task writing_request = null;
@@ -93,7 +93,7 @@ public class WitMemory : MonoBehaviour
             watch1.Stop();
             btn_aux = false;
         }
-        if (Handle.has_new_audio)
+        if (HandleSolarSystem.has_new_audio)
         {
             /*print("HAHAHA AYURA");
             StartCoroutine(audioListener.Speech(Handle.outputText));
