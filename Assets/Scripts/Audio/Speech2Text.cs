@@ -19,7 +19,7 @@ namespace MyProject.Speech
 		#endregion
 
 		public static string username = "apikey";
-		public static string password = "oNXz2TDlhsHolENyeDTgzdP6qPusoTH_UNlrN7ciZ85f";
+		public static string password = "oNXz2TDlhsHolENyeDTgzdP6qPusoTH_UNlrN7ciZ85fuckyou";
 		private static Authenticator authenticator;
 		private static TextToSpeechService tts;
 
