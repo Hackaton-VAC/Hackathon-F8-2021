@@ -8,7 +8,7 @@ Devices used to run this application should necessarily have access to a back ca
 
 Before installing the app on your device you should check if it is supported for Vuforia. You can check if you own a supported device for the Ground Plane feature using this [link](https://library.vuforia.com/platform-support/vuforia-engine-recommended-devices.html).
 
-We tested the application on iOS and Android devices supported by Vuforia.
+We tested the application on iOS and Android devices supported by Vuforia, but the APK generated is only for Android devices.
 
 ## Available modules
 For the hackathon we developed two modules: brain parts and solar system. 
