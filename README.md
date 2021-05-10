@@ -47,5 +47,5 @@ This project was developed for: [David Hernández](https://www.linkedin.com/in/d
 - Platform model by [Bill Nguyen](https://www.cgtrader.com/free-3d-models/architectural/decoration/scifi-pedestal-turntable) has Royalty Free License.
 - Arcade Font by [Yuji Adachi](https://fontmeme.com/fonts/arcade-yuji-adachi-font/) has Free License.
 - Clean Settings UI by [Landan Lloyd](https://assetstore.unity.com/packages/tools/gui/clean-settings-ui-65588).
-- Animated Loading Icons by [David Stenfors](https://assetstore.unity.com/packages/2d/gui/icons/animated-loading-icons-47844)
-- Brain Models by [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/)
+- Animated Loading Icons by [David Stenfors](https://assetstore.unity.com/packages/2d/gui/icons/animated-loading-icons-47844).
+- Brain Models by [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/).
