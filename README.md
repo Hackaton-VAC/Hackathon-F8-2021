@@ -34,4 +34,4 @@ Both select and information commands will give the user information about the mo
 ## Demo video
 
 ## The team
-This project was developed for: [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/), [María Victoria Jorge](www.linkedin.com/in/maria-victoria-jorge), [Carlos Spaggiari](https://www.linkedin.com/in/carlos-spaggiari-52b6988b/) and Arturo Toro.
+This project was developed for: [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/), [María Victoria Jorge](www.linkedin.com/in/maria-victoria-jorge), [Carlos Spaggiari](https://www.linkedin.com/in/carlos-spaggiari-52b6988b/) and [Arturo Toro](https://www.linkedin.com/in/arturot1212/).
