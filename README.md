@@ -1,7 +1,7 @@
 # Hackathon-F8-2021
 
 ## About the project
-**TeachAR** is an educational AR application that allows kids to learn by experimenting anywhere and any time, interacting with a voice assistant. This project was developed for the [**F8 Refresh: Hackathon 2021**](https://f82021.facebookhackathons.com/) and it is not intended for commercial use. Our motivation was to help kids to learn new topics through the use of technology. We see this as necessary in this day and age, where the number of children going to home school has increased significantly since the COVID-19 pandemic.
+**TeachAR** is an educational AR application that allows kids to learn by experimenting anywhere and anytime, interacting with a voice assistant. This project was developed for the [**F8 Refresh: Hackathon 2021**](https://f82021.facebookhackathons.com/) and it is not intended for commercial use. Our motivation was to help kids to learn new topics through the use of technology. We see this necessary on these days, when the number of children staying in home for school has increased significantly since the COVID-19 pandemic.
 
 ## Supported Devices
 Devices used to run this application should necessarily have a back camera, microphone and sound output available.
@@ -35,3 +35,6 @@ Both select and information commands will give the user information about the mo
 
 ## The team
 This project was developed for: [David Hernández](https://www.linkedin.com/in/david-hernandez-3a5592a1/), [María Victoria Jorge](https://www.linkedin.com/in/maria-victoria-jorge), [Carlos Spaggiari](https://www.linkedin.com/in/carlos-spaggiari-52b6988b/) and [Arturo Toro](https://www.linkedin.com/in/arturot1212/).
+
+## Credits
+Planet models by [Akshat](https://sketchfab.com/shooter24994) and the Sun model by [SebastianSosnowski](https://sketchfab.com/SebastianSosnowski) are licensed under [Creative Commons Attribution](http://creativecommons.org/licenses/by/4.0/).
